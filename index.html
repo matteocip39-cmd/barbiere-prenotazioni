@@ -1,258 +1,552 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Prenota il tuo barbiere</title>
+  <meta charset="UTF-8">
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-<style>
-* {
-  box-sizing: border-box;
-}
+  <title>𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹</title>
 
-body {
-  margin: 0;
-  background: #111;
-  color: #fff;
-  font-family: Arial, sans-serif;
-}
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-.container {
-  max-width: 650px;
-  margin: auto;
-  padding: 20px 15px 50px;
-}
 
-.hero {
-  text-align: center;
-  padding: 25px 10px 20px;
-}
+  <style>
 
-.logo {
-  width: 75px;
-  height: 75px;
-  margin: auto;
-  border-radius: 50%;
-  background: #c9a45c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 38px;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.hero h1 {
-  font-size: 32px;
-  margin: 15px 0 5px;
-}
 
-.hero p {
-  color: #bbb;
-  margin: 0;
-}
+    body {
+      margin: 0;
+      background:
+        radial-gradient(
+          circle at top,
+          #292929 0%,
+          #111 45%,
+          #090909 100%
+        );
 
-.card {
-  background: #1d1d1d;
-  border: 1px solid #333;
-  border-radius: 20px;
-  padding: 22px;
-  margin-top: 15px;
-}
+      color: #ffffff;
 
-.step {
-  margin-bottom: 25px;
-}
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-.step-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
+      min-height: 100vh;
+    }
 
-.people {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
 
-.person {
-  border: 2px solid #444;
-  background: #242424;
-  color: white;
-  border-radius: 15px;
-  padding: 18px 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: .2s;
-}
+    .container {
+      width: 100%;
+      max-width: 650px;
 
-.person:hover {
-  border-color: #c9a45c;
-}
+      margin: auto;
 
-.person.selected {
-  border-color: #c9a45c;
-  background: #332c20;
-}
+      padding:
+        20px
+        15px
+        45px;
+    }
 
-.person-name {
-  font-size: 20px;
-  font-weight: bold;
-}
 
-.person-sub {
-  color: #aaa;
-  font-size: 13px;
-  margin-top: 5px;
-}
+    /* HERO */
 
-input {
-  width: 100%;
-  padding: 15px;
-  background: #292929;
-  border: 1px solid #444;
-  color: white;
-  border-radius: 12px;
-  font-size: 16px;
-}
+    .hero {
+      text-align: center;
 
-input:focus {
-  outline: none;
-  border-color: #c9a45c;
-}
+      padding:
+        20px
+        10px
+        25px;
+    }
 
-.date-box {
-  position: relative;
-}
 
-.date-box input {
-  color-scheme: dark;
-}
+    .logo {
+      width: 82px;
+      height: 82px;
 
-.times {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 9px;
-}
+      margin: 0 auto 18px;
 
-.time {
-  padding: 13px 5px;
-  background: #292929;
-  border: 1px solid #444;
-  color: white;
-  border-radius: 10px;
-  cursor: pointer;
-  text-align: center;
-  font-weight: bold;
-}
+      border-radius: 50%;
 
-.time:hover {
-  border-color: #c9a45c;
-}
+      background:
+        linear-gradient(
+          135deg,
+          #e3bd70,
+          #a87d35
+        );
 
-.time.selected {
-  background: #c9a45c;
-  border-color: #c9a45c;
-  color: #111;
-}
+      display: flex;
 
-.time.occupied {
-  background: #151515;
-  color: #555;
-  border-color: #222;
-  cursor: not-allowed;
-  text-decoration: line-through;
-}
+      align-items: center;
+      justify-content: center;
 
-.time.loading {
-  opacity: .5;
-}
+      font-size: 40px;
 
-button.book {
-  width: 100%;
-  padding: 17px;
-  border: 0;
-  border-radius: 14px;
-  background: #c9a45c;
-  color: #111;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-}
+      box-shadow:
+        0 10px 35px
+        rgba(201,164,92,.25);
+    }
 
-button.book:hover {
-  background: #dfbc72;
-}
 
-button.book:disabled {
-  opacity: .5;
-  cursor: not-allowed;
-}
+    .hero h1 {
+      margin: 0;
 
-.message {
-  text-align: center;
-  margin-top: 15px;
-  font-weight: bold;
-}
+      font-size: 30px;
 
-.success {
-  color: #62d17d;
-}
+      line-height: 1.2;
 
-.error {
-  color: #ff6d6d;
-}
+      letter-spacing: .5px;
+    }
 
-.info {
-  color: #aaa;
-  text-align: center;
-  font-size: 14px;
-}
 
-.hidden {
-  display: none;
-}
+    .hero p {
+      margin:
+        10px
+        0
+        0;
 
-.footer {
-  text-align: center;
-  color: #777;
-  font-size: 13px;
-  margin-top: 25px;
-}
+      color: #bdbdbd;
 
-@media(max-width:500px) {
-  .times {
-    grid-template-columns: repeat(2, 1fr);
-  }
+      font-size: 15px;
+    }
 
-  .hero h1 {
-    font-size: 27px;
-  }
-}
-</style>
+
+    /* CARD */
+
+    .card {
+      background: #1c1c1c;
+
+      border:
+        1px solid
+        #343434;
+
+      border-radius: 22px;
+
+      padding: 22px;
+
+      box-shadow:
+        0 15px 45px
+        rgba(0,0,0,.35);
+    }
+
+
+    /* STEP */
+
+    .step {
+      margin-bottom: 26px;
+    }
+
+
+    .step:last-child {
+      margin-bottom: 0;
+    }
+
+
+    .step-title {
+      font-size: 17px;
+
+      font-weight: bold;
+
+      margin-bottom: 12px;
+    }
+
+
+    /* BARBIERI */
+
+    .people {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr;
+
+      gap: 12px;
+    }
+
+
+    .person {
+      padding: 18px 10px;
+
+      background: #252525;
+
+      border:
+        2px solid
+        #444;
+
+      border-radius: 16px;
+
+      text-align: center;
+
+      cursor: pointer;
+
+      transition:
+        .2s ease;
+    }
+
+
+    .person:hover {
+      border-color:
+        #c9a45c;
+    }
+
+
+    .person.selected {
+      background: #332b1e;
+
+      border-color:
+        #c9a45c;
+
+      box-shadow:
+        0 0 0 1px
+        rgba(201,164,92,.2);
+    }
+
+
+    .person-name {
+      font-size: 20px;
+
+      font-weight: bold;
+    }
+
+
+    .person-sub {
+      margin-top: 5px;
+
+      font-size: 13px;
+
+      color: #aaa;
+    }
+
+
+    /* INPUT */
+
+    input[type="text"],
+    input[type="date"] {
+
+      width: 100%;
+
+      padding: 15px;
+
+      border-radius: 13px;
+
+      border:
+        1px solid
+        #454545;
+
+      background: #292929;
+
+      color: #fff;
+
+      font-size: 16px;
+
+      outline: none;
+    }
+
+
+    input[type="text"]:focus,
+    input[type="date"]:focus {
+
+      border-color:
+        #c9a45c;
+    }
+
+
+    input[type="date"] {
+      color-scheme: dark;
+    }
+
+
+    /* ORARI */
+
+    .times {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 9px;
+    }
+
+
+    .time {
+
+      padding: 13px 5px;
+
+      background: #292929;
+
+      border:
+        1px solid
+        #454545;
+
+      color: #fff;
+
+      border-radius: 11px;
+
+      text-align: center;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition:
+        .2s ease;
+    }
+
+
+    .time:hover {
+
+      border-color:
+        #c9a45c;
+    }
+
+
+    .time.selected {
+
+      background:
+        #c9a45c;
+
+      border-color:
+        #c9a45c;
+
+      color: #111;
+    }
+
+
+    .time.occupied {
+
+      background: #141414;
+
+      border-color: #222;
+
+      color: #555;
+
+      cursor: not-allowed;
+
+      text-decoration:
+        line-through;
+    }
+
+
+    .info {
+
+      margin:
+        12px
+        0
+        0;
+
+      text-align: center;
+
+      color: #999;
+
+      font-size: 13px;
+    }
+
+
+    /* BUTTON */
+
+    .book-button {
+
+      width: 100%;
+
+      padding: 17px;
+
+      margin-top: 5px;
+
+      border: 0;
+
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #dfbd73,
+          #b88c42
+        );
+
+      color: #111;
+
+      font-size: 18px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 8px 25px
+        rgba(201,164,92,.18);
+
+      transition:
+        .2s ease;
+    }
+
+
+    .book-button:hover {
+      transform:
+        translateY(-1px);
+    }
+
+
+    .book-button:disabled {
+
+      opacity: .45;
+
+      cursor:
+        not-allowed;
+
+      transform:
+        none;
+    }
+
+
+    /* MESSAGGI */
+
+    .message {
+
+      margin-top: 15px;
+
+      text-align: center;
+
+      font-weight: bold;
+
+      line-height: 1.4;
+    }
+
+
+    .success {
+      color: #69d184;
+    }
+
+
+    .error {
+      color: #ff7777;
+    }
+
+
+    /* FOOTER */
+
+    .footer {
+
+      text-align: center;
+
+      margin-top: 28px;
+
+      color: #999;
+
+      font-size: 14px;
+
+      line-height: 1.8;
+    }
+
+
+    .footer-name {
+
+      color: #fff;
+
+      font-size: 17px;
+
+      font-weight: bold;
+
+      margin-bottom: 7px;
+    }
+
+
+    .footer a {
+
+      color: #d8b56d;
+
+      text-decoration: none;
+
+      font-weight: bold;
+    }
+
+
+    .footer a:hover {
+
+      text-decoration:
+        underline;
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 500px) {
+
+      .container {
+        padding:
+          15px
+          12px
+          35px;
+      }
+
+
+      .hero h1 {
+        font-size: 25px;
+      }
+
+
+      .people {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .times {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+
+      .card {
+        padding: 18px;
+      }
+
+    }
+
+  </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
+
+
+  <!-- TESTATA -->
 
   <div class="hero">
 
-    <div class="logo">✂️</div>
+    <div class="logo">
+      ✂️
+    </div>
 
-    <h1>Prenota il tuo appuntamento</h1>
+    <h1>
+      𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹
+    </h1>
 
-    <p>Taglio, stile e precisione.</p>
+    <p>
+      Prenota il tuo appuntamento
+    </p>
 
   </div>
 
 
+
+  <!-- PRENOTAZIONE -->
+
   <div class="card">
 
-    <!-- PERSONA -->
+
+    <!-- BARBIERE -->
 
     <div class="step">
 
@@ -260,7 +554,9 @@ button.book:disabled {
         1. Scegli il barbiere
       </div>
 
+
       <div class="people">
+
 
         <div
           class="person selected"
@@ -278,6 +574,7 @@ button.book:disabled {
         </div>
 
 
+
         <div
           class="person"
           data-person="Tommaso"
@@ -293,9 +590,11 @@ button.book:disabled {
 
         </div>
 
+
       </div>
 
     </div>
+
 
 
     <!-- NOME -->
@@ -305,6 +604,7 @@ button.book:disabled {
       <div class="step-title">
         2. Il tuo nome
       </div>
+
 
       <input
         id="name"
@@ -316,6 +616,7 @@ button.book:disabled {
     </div>
 
 
+
     <!-- DATA -->
 
     <div class="step">
@@ -324,16 +625,14 @@ button.book:disabled {
         3. Scegli il giorno
       </div>
 
-      <div class="date-box">
 
-        <input
-          id="date"
-          type="date"
-        >
-
-      </div>
+      <input
+        id="date"
+        type="date"
+      >
 
     </div>
+
 
 
     <!-- ORARIO -->
@@ -344,53 +643,112 @@ button.book:disabled {
         4. Scegli l'orario
       </div>
 
+
       <div
         id="times"
         class="times"
       ></div>
 
-      <p
+
+      <div
         id="timeInfo"
         class="info"
       >
-        Scegli una data per vedere gli orari disponibili.
-      </p>
+        Scegli una data per vedere
+        gli orari disponibili.
+      </div>
 
     </div>
 
 
+
+    <!-- PRENOTA -->
+
     <button
       id="bookButton"
-      class="book"
+      class="book-button"
       disabled
     >
       PRENOTA ORA
     </button>
+
 
     <div
       id="message"
       class="message"
     ></div>
 
+
   </div>
 
+
+
+  <!-- CONTATTI -->
 
   <div class="footer">
-    Prenotazione online ✂️
+
+    <div class="footer-name">
+      𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹
+    </div>
+
+
+    <div>
+      Instagram:
+      <strong>
+        @𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹
+      </strong>
+    </div>
+
+
+    <div>
+
+      WhatsApp:
+
+      <a
+        href="https://wa.me/393201519469"
+        target="_blank"
+      >
+        3201519469
+      </a>
+
+      ·
+
+      <a
+        href="https://wa.me/393274454796"
+        target="_blank"
+      >
+        3274454796
+      </a>
+
+    </div>
+
   </div>
+
 
 </div>
 
 
+
 <script>
+
+
+/*
+==================================================
+SUPABASE
+==================================================
+*/
 
 const SUPABASE_URL =
   "https://nieyajttmfkxowwjqglb.supabase.co";
 
 
 /*
-  INCOLLA QUI LA STESSA PUBLISHABLE KEY
-  CHE HAI GIÀ USATO NELLA VERSIONE PRECEDENTE.
+IMPORTANTE:
+
+QUI DEVI INCOLLARE LA STESSA
+PUBLISHABLE KEY CHE HAI GIÀ USATO.
+
+NON INSERIRE LA SECRET KEY.
 */
 
 const SUPABASE_KEY =
@@ -404,17 +762,34 @@ const supabaseClient =
   );
 
 
-let selectedPerson = "Matteo";
-let selectedTime = null;
+
+/*
+==================================================
+VARIABILI
+==================================================
+*/
+
+let selectedPerson =
+  "Matteo";
+
+let selectedTime =
+  null;
+
 
 
 /*
-  ORARI DISPONIBILI
+==================================================
+ORARI
+==================================================
 
-  Puoi modificarli facilmente.
+09:00 - 12:00
+14:00 - 19:00
+
+Ogni 30 minuti.
 */
 
 const TIMES = [
+
   "09:00",
   "09:30",
   "10:00",
@@ -434,58 +809,100 @@ const TIMES = [
   "18:00",
   "18:30",
   "19:00"
+
 ];
 
 
-/* DATA MINIMA */
+
+/*
+==================================================
+DATA MINIMA
+==================================================
+*/
 
 const dateInput =
-  document.getElementById("date");
+  document.getElementById(
+    "date"
+  );
+
 
 const today =
   new Date();
 
+
 const todayString =
-  today.toISOString().split("T")[0];
+  today
+    .toISOString()
+    .split("T")[0];
 
-dateInput.min = todayString;
+
+dateInput.min =
+  todayString;
 
 
-/* SELEZIONE BARBIERE */
+
+/*
+==================================================
+SCELTA BARBIERE
+==================================================
+*/
 
 document
   .querySelectorAll(".person")
   .forEach(person => {
 
-    person.addEventListener("click", () => {
 
-      document
-        .querySelectorAll(".person")
-        .forEach(p =>
-          p.classList.remove("selected")
+    person.addEventListener(
+      "click",
+      () => {
+
+
+        document
+          .querySelectorAll(".person")
+          .forEach(p => {
+
+            p.classList.remove(
+              "selected"
+            );
+
+          });
+
+
+        person.classList.add(
+          "selected"
         );
 
-      person.classList.add("selected");
 
-      selectedPerson =
-        person.dataset.person;
+        selectedPerson =
+          person.dataset.person;
 
-      selectedTime = null;
 
-      loadTimes();
+        selectedTime =
+          null;
 
-    });
+
+        loadTimes();
+
+      }
+    );
+
 
   });
 
 
-/* CAMBIO DATA */
+
+/*
+==================================================
+CAMBIO DATA
+==================================================
+*/
 
 dateInput.addEventListener(
   "change",
   () => {
 
-    selectedTime = null;
+    selectedTime =
+      null;
 
     loadTimes();
 
@@ -493,28 +910,50 @@ dateInput.addEventListener(
 );
 
 
-/* CARICA ORARI */
+
+/*
+==================================================
+CARICA ORARI OCCUPATI
+==================================================
+*/
 
 async function loadTimes() {
 
+
   const times =
-    document.getElementById("times");
+    document.getElementById(
+      "times"
+    );
+
 
   const info =
-    document.getElementById("timeInfo");
+    document.getElementById(
+      "timeInfo"
+    );
+
 
   const bookButton =
-    document.getElementById("bookButton");
+    document.getElementById(
+      "bookButton"
+    );
 
 
-  bookButton.disabled = true;
+  bookButton.disabled =
+    true;
 
-  times.innerHTML = "";
 
-  selectedTime = null;
+  times.innerHTML =
+    "";
+
+
+  selectedTime =
+    null;
 
 
   if (!dateInput.value) {
+
+    info.className =
+      "info";
 
     info.textContent =
       "Scegli una data per vedere gli orari disponibili.";
@@ -524,30 +963,30 @@ async function loadTimes() {
   }
 
 
+  info.className =
+    "info";
+
   info.textContent =
     "Controllo disponibilità...";
 
 
-  /*
-    Recuperiamo solamente gli orari occupati.
-
-    NON vengono mostrati nomi o dati dei clienti.
-  */
-
   const { data, error } =
-    await supabaseClient
-      .rpc(
-        "get_booked_slots",
-        {
-          p_persona: selectedPerson,
-          p_data: dateInput.value
-        }
-      );
+    await supabaseClient.rpc(
+      "get_booked_slots",
+      {
+        p_persona:
+          selectedPerson,
+
+        p_data:
+          dateInput.value
+      }
+    );
 
 
   if (error) {
 
     console.error(error);
+
 
     info.className =
       "info error";
@@ -562,44 +1001,82 @@ async function loadTimes() {
 
   const occupied =
     (data || []).map(
-      x => x.orario.substring(0, 5)
+      item =>
+        String(
+          item.orario
+        ).substring(0, 5)
     );
+
 
 
   TIMES.forEach(time => {
 
+
     const button =
-      document.createElement("div");
-
-    button.className = "time";
-
-    button.textContent = time;
+      document.createElement(
+        "div"
+      );
 
 
-    if (occupied.includes(time)) {
+    button.className =
+      "time";
 
-      button.classList.add("occupied");
+
+    button.textContent =
+      time;
+
+
+
+    if (
+      occupied.includes(
+        time
+      )
+    ) {
+
+
+      button.classList.add(
+        "occupied"
+      );
+
 
       button.textContent =
-        time + " • occupato";
+        time +
+        " • occupato";
+
 
     } else {
+
 
       button.addEventListener(
         "click",
         () => {
 
+
           document
-            .querySelectorAll(".time")
-            .forEach(t =>
-              t.classList.remove("selected")
-            );
+            .querySelectorAll(
+              ".time"
+            )
+            .forEach(t => {
 
-          button.classList.add("selected");
+              t.classList.remove(
+                "selected"
+              );
 
-          selectedTime = time;
+            });
 
-          bookButton.disabled = false;
+
+          button.classList.add(
+            "selected"
+          );
+
+
+          selectedTime =
+            time;
+
+
+          bookButton.disabled =
+            false;
+
 
         }
       );
@@ -607,29 +1084,43 @@ async function loadTimes() {
     }
 
 
-    times.appendChild(button);
+    times.appendChild(
+      button
+    );
+
 
   });
 
 
+
   const available =
     TIMES.filter(
-      time => !occupied.includes(time)
+      time =>
+        !occupied.includes(
+          time
+        )
     );
 
 
-  if (available.length === 0) {
+  if (
+    available.length === 0
+  ) {
+
 
     info.className =
       "info error";
 
+
     info.textContent =
       "Nessun orario disponibile per questo giorno.";
 
+
   } else {
+
 
     info.className =
       "info";
+
 
     info.textContent =
       "Scegli uno degli orari disponibili.";
@@ -639,100 +1130,153 @@ async function loadTimes() {
 }
 
 
-/* PRENOTAZIONE */
+
+/*
+==================================================
+PRENOTAZIONE
+==================================================
+*/
 
 document
-  .getElementById("bookButton")
+  .getElementById(
+    "bookButton"
+  )
   .addEventListener(
     "click",
     async () => {
 
+
       const name =
         document
-          .getElementById("name")
+          .getElementById(
+            "name"
+          )
           .value
           .trim();
 
+
       const message =
-        document.getElementById("message");
+        document.getElementById(
+          "message"
+        );
+
 
       const bookButton =
-        document.getElementById("bookButton");
+        document.getElementById(
+          "bookButton"
+        );
+
 
 
       if (!name) {
 
+
         message.className =
           "message error";
+
 
         message.textContent =
           "Inserisci il tuo nome.";
 
+
         return;
 
       }
+
 
 
       if (!dateInput.value) {
 
+
         message.className =
           "message error";
+
 
         message.textContent =
           "Scegli una data.";
 
+
         return;
 
       }
+
 
 
       if (!selectedTime) {
 
+
         message.className =
           "message error";
 
+
         message.textContent =
           "Scegli un orario.";
+
 
         return;
 
       }
 
 
-      bookButton.disabled = true;
+
+      bookButton.disabled =
+        true;
+
 
       message.className =
         "message";
+
 
       message.textContent =
         "Prenotazione in corso...";
 
 
+
       const { error } =
         await supabaseClient
-          .from("prenotazioni")
+          .from(
+            "prenotazioni"
+          )
           .insert({
-            nome: name,
-            persona: selectedPerson,
-            data: dateInput.value,
-            orario: selectedTime
+
+            nome:
+              name,
+
+            persona:
+              selectedPerson,
+
+            data:
+              dateInput.value,
+
+            orario:
+              selectedTime
+
           });
+
 
 
       if (error) {
 
+
         console.error(error);
+
 
         message.className =
           "message error";
 
 
-        if (error.code === "23505") {
+        if (
+          error.code ===
+          "23505"
+        ) {
+
 
           message.textContent =
             "❌ Questo orario è appena stato prenotato. Scegline un altro.";
 
+
         } else {
+
 
           message.textContent =
             "❌ Non è stato possibile completare la prenotazione.";
@@ -742,33 +1286,42 @@ document
 
         loadTimes();
 
+
         return;
 
       }
 
 
+
       message.className =
         "message success";
+
 
       message.textContent =
         "✅ Prenotazione effettuata! Ti aspettiamo.";
 
 
       document
-        .getElementById("name")
-        .value = "";
+        .getElementById(
+          "name"
+        )
+        .value =
+        "";
 
 
-      selectedTime = null;
+      selectedTime =
+        null;
 
 
       loadTimes();
+
 
     }
   );
 
 
 </script>
+
 
 </body>
 </html>
