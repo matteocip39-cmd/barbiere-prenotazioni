@@ -1,201 +1,401 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prenota il tuo barbiere</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<title>Prenota il tuo barbiere</title>
 
-  <style>
-    * { box-sizing: border-box; }
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f1ec;
-      color: #211d19;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    .container {
-      max-width: 600px;
-      margin: auto;
-      padding: 25px 16px 50px;
-    }
+body {
+  margin: 0;
+  background: #111;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
 
-    header {
-      text-align: center;
-      margin-bottom: 25px;
-    }
+.container {
+  max-width: 650px;
+  margin: auto;
+  padding: 20px 15px 50px;
+}
 
-    .logo { font-size: 45px; }
+.hero {
+  text-align: center;
+  padding: 25px 10px 20px;
+}
 
-    h1 { margin: 8px 0; }
+.logo {
+  width: 75px;
+  height: 75px;
+  margin: auto;
+  border-radius: 50%;
+  background: #c9a45c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+}
 
-    .subtitle { color: #706960; }
+.hero h1 {
+  font-size: 32px;
+  margin: 15px 0 5px;
+}
 
-    .card {
-      background: white;
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 18px;
-      box-shadow: 0 5px 20px rgba(0,0,0,.07);
-    }
+.hero p {
+  color: #bbb;
+  margin: 0;
+}
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin-top: 15px;
-    }
+.card {
+  background: #1d1d1d;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 22px;
+  margin-top: 15px;
+}
 
-    input {
-      width: 100%;
-      padding: 13px;
-      margin-top: 7px;
-      border: 1px solid #d5cec5;
-      border-radius: 10px;
-      font-size: 16px;
-    }
+.step {
+  margin-bottom: 25px;
+}
 
-    .people {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 10px;
-    }
+.step-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
 
-    .person {
-      padding: 16px;
-      border: 2px solid #ddd6ce;
-      border-radius: 12px;
-      text-align: center;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.people {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
 
-    .person.selected {
-      border-color: #211d19;
-      background: #eee9e3;
-    }
+.person {
+  border: 2px solid #444;
+  background: #242424;
+  color: white;
+  border-radius: 15px;
+  padding: 18px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: .2s;
+}
 
-    .person input {
-      display: none;
-    }
+.person:hover {
+  border-color: #c9a45c;
+}
 
-    button {
-      width: 100%;
-      padding: 15px;
-      margin-top: 20px;
-      border: 0;
-      border-radius: 12px;
-      background: #211d19;
-      color: white;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.person.selected {
+  border-color: #c9a45c;
+  background: #332c20;
+}
 
-    button:disabled {
-      opacity: .6;
-    }
+.person-name {
+  font-size: 20px;
+  font-weight: bold;
+}
 
-    #message {
-      margin-top: 15px;
-      font-weight: bold;
-    }
+.person-sub {
+  color: #aaa;
+  font-size: 13px;
+  margin-top: 5px;
+}
 
-    .success { color: #26723a; }
-    .error { color: #a32e27; }
+input {
+  width: 100%;
+  padding: 15px;
+  background: #292929;
+  border: 1px solid #444;
+  color: white;
+  border-radius: 12px;
+  font-size: 16px;
+}
 
-    footer {
-      text-align: center;
-      color: #777;
-      font-size: 13px;
-    }
+input:focus {
+  outline: none;
+  border-color: #c9a45c;
+}
 
-    @media(max-width:500px) {
-      .people {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+.date-box {
+  position: relative;
+}
+
+.date-box input {
+  color-scheme: dark;
+}
+
+.times {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+}
+
+.time {
+  padding: 13px 5px;
+  background: #292929;
+  border: 1px solid #444;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+}
+
+.time:hover {
+  border-color: #c9a45c;
+}
+
+.time.selected {
+  background: #c9a45c;
+  border-color: #c9a45c;
+  color: #111;
+}
+
+.time.occupied {
+  background: #151515;
+  color: #555;
+  border-color: #222;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.time.loading {
+  opacity: .5;
+}
+
+button.book {
+  width: 100%;
+  padding: 17px;
+  border: 0;
+  border-radius: 14px;
+  background: #c9a45c;
+  color: #111;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button.book:hover {
+  background: #dfbc72;
+}
+
+button.book:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.message {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.success {
+  color: #62d17d;
+}
+
+.error {
+  color: #ff6d6d;
+}
+
+.info {
+  color: #aaa;
+  text-align: center;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+
+.footer {
+  text-align: center;
+  color: #777;
+  font-size: 13px;
+  margin-top: 25px;
+}
+
+@media(max-width:500px) {
+  .times {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 27px;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-  <header>
+  <div class="hero">
+
     <div class="logo">✂️</div>
 
-    <h1>Prenota il tuo barbiere</h1>
+    <h1>Prenota il tuo appuntamento</h1>
 
-    <p class="subtitle">
-      Scegli il barbiere, il giorno e l'orario.
-    </p>
-  </header>
+    <p>Taglio, stile e precisione.</p>
+
+  </div>
+
 
   <div class="card">
 
-    <form id="bookingForm">
+    <!-- PERSONA -->
 
-      <label>Il tuo nome</label>
+    <div class="step">
+
+      <div class="step-title">
+        1. Scegli il barbiere
+      </div>
+
+      <div class="people">
+
+        <div
+          class="person selected"
+          data-person="Matteo"
+        >
+
+          <div class="person-name">
+            Matteo
+          </div>
+
+          <div class="person-sub">
+            Barbiere
+          </div>
+
+        </div>
+
+
+        <div
+          class="person"
+          data-person="Tommaso"
+        >
+
+          <div class="person-name">
+            Tommaso
+          </div>
+
+          <div class="person-sub">
+            Barbiere
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- NOME -->
+
+    <div class="step">
+
+      <div class="step-title">
+        2. Il tuo nome
+      </div>
 
       <input
         id="name"
         type="text"
         maxlength="80"
         placeholder="Nome e cognome"
-        required
       >
 
-      <label>Scegli il barbiere</label>
+    </div>
 
-      <div class="people">
 
-        <label class="person selected">
-          <input type="radio" name="person" value="Matteo" checked>
-          Matteo
-        </label>
+    <!-- DATA -->
 
-        <label class="person">
-          <input type="radio" name="person" value="Tommaso">
-          Tommaso
-        </label>
+    <div class="step">
+
+      <div class="step-title">
+        3. Scegli il giorno
+      </div>
+
+      <div class="date-box">
+
+        <input
+          id="date"
+          type="date"
+        >
 
       </div>
 
-      <label>Data</label>
+    </div>
 
-      <input id="date" type="date" required>
 
-      <label>Orario</label>
+    <!-- ORARIO -->
 
-      <input id="time" type="time" required>
+    <div class="step">
 
-      <button id="submitButton" type="submit">
-        PRENOTA
-      </button>
+      <div class="step-title">
+        4. Scegli l'orario
+      </div>
 
-      <div id="message"></div>
+      <div
+        id="times"
+        class="times"
+      ></div>
 
-    </form>
+      <p
+        id="timeInfo"
+        class="info"
+      >
+        Scegli una data per vedere gli orari disponibili.
+      </p>
+
+    </div>
+
+
+    <button
+      id="bookButton"
+      class="book"
+      disabled
+    >
+      PRENOTA ORA
+    </button>
+
+    <div
+      id="message"
+      class="message"
+    ></div>
 
   </div>
 
-  <footer>
+
+  <div class="footer">
     Prenotazione online ✂️
-  </footer>
+  </div>
 
 </div>
+
 
 <script>
 
 const SUPABASE_URL =
   "https://nieyajttmfkxowwjqglb.supabase.co";
 
+
+/*
+  INCOLLA QUI LA STESSA PUBLISHABLE KEY
+  CHE HAI GIÀ USATO NELLA VERSIONE PRECEDENTE.
+*/
+
 const SUPABASE_KEY =
   "sb_publishable_9ShmvYVhOPGoU90-Lkwdvw_BVy3dz_X";
+
 
 const supabaseClient =
   window.supabase.createClient(
@@ -204,103 +404,369 @@ const supabaseClient =
   );
 
 
-document.querySelectorAll(".person").forEach(person => {
+let selectedPerson = "Matteo";
+let selectedTime = null;
 
-  person.addEventListener("click", () => {
 
-    document.querySelectorAll(".person")
-      .forEach(p => p.classList.remove("selected"));
+/*
+  ORARI DISPONIBILI
 
-    person.classList.add("selected");
+  Puoi modificarli facilmente.
+*/
+
+const TIMES = [
+  "09:00",
+  "09:30",
+  "10:00",
+  "10:30",
+  "11:00",
+  "11:30",
+  "12:00",
+
+  "14:00",
+  "14:30",
+  "15:00",
+  "15:30",
+  "16:00",
+  "16:30",
+  "17:00",
+  "17:30",
+  "18:00",
+  "18:30",
+  "19:00"
+];
+
+
+/* DATA MINIMA */
+
+const dateInput =
+  document.getElementById("date");
+
+const today =
+  new Date();
+
+const todayString =
+  today.toISOString().split("T")[0];
+
+dateInput.min = todayString;
+
+
+/* SELEZIONE BARBIERE */
+
+document
+  .querySelectorAll(".person")
+  .forEach(person => {
+
+    person.addEventListener("click", () => {
+
+      document
+        .querySelectorAll(".person")
+        .forEach(p =>
+          p.classList.remove("selected")
+        );
+
+      person.classList.add("selected");
+
+      selectedPerson =
+        person.dataset.person;
+
+      selectedTime = null;
+
+      loadTimes();
+
+    });
 
   });
 
-});
+
+/* CAMBIO DATA */
+
+dateInput.addEventListener(
+  "change",
+  () => {
+
+    selectedTime = null;
+
+    loadTimes();
+
+  }
+);
 
 
-document.getElementById("date").min =
-  new Date().toISOString().split("T")[0];
+/* CARICA ORARI */
+
+async function loadTimes() {
+
+  const times =
+    document.getElementById("times");
+
+  const info =
+    document.getElementById("timeInfo");
+
+  const bookButton =
+    document.getElementById("bookButton");
 
 
-document
-  .getElementById("bookingForm")
-  .addEventListener("submit", async function(event) {
+  bookButton.disabled = true;
 
-    event.preventDefault();
+  times.innerHTML = "";
+
+  selectedTime = null;
+
+
+  if (!dateInput.value) {
+
+    info.textContent =
+      "Scegli una data per vedere gli orari disponibili.";
+
+    return;
+
+  }
+
+
+  info.textContent =
+    "Controllo disponibilità...";
+
+
+  /*
+    Recuperiamo solamente gli orari occupati.
+
+    NON vengono mostrati nomi o dati dei clienti.
+  */
+
+  const { data, error } =
+    await supabaseClient
+      .rpc(
+        "get_booked_slots",
+        {
+          p_persona: selectedPerson,
+          p_data: dateInput.value
+        }
+      );
+
+
+  if (error) {
+
+    console.error(error);
+
+    info.className =
+      "info error";
+
+    info.textContent =
+      "Errore nel caricamento degli orari.";
+
+    return;
+
+  }
+
+
+  const occupied =
+    (data || []).map(
+      x => x.orario.substring(0, 5)
+    );
+
+
+  TIMES.forEach(time => {
 
     const button =
-      document.getElementById("submitButton");
+      document.createElement("div");
 
-    const message =
-      document.getElementById("message");
+    button.className = "time";
 
-    const nome =
-      document.getElementById("name").value.trim();
-
-    const persona =
-      document.querySelector(
-        'input[name="person"]:checked'
-      ).value;
-
-    const data =
-      document.getElementById("date").value;
-
-    const orario =
-      document.getElementById("time").value;
-
-    button.disabled = true;
-
-    message.className = "";
-    message.textContent = "Prenotazione in corso...";
+    button.textContent = time;
 
 
-    const { error } =
-      await supabaseClient
-        .from("prenotazioni")
-        .insert({
-          nome: nome,
-          persona: persona,
-          data: data,
-          orario: orario
-        });
+    if (occupied.includes(time)) {
 
+      button.classList.add("occupied");
 
-    if (error) {
+      button.textContent =
+        time + " • occupato";
 
-      console.error(error);
+    } else {
 
-      message.className = "error";
+      button.addEventListener(
+        "click",
+        () => {
 
-      if (error.code === "23505") {
+          document
+            .querySelectorAll(".time")
+            .forEach(t =>
+              t.classList.remove("selected")
+            );
 
-        message.textContent =
-          "❌ Questo orario è già occupato per " +
-          persona + ".";
+          button.classList.add("selected");
 
-      } else {
+          selectedTime = time;
 
-        message.textContent =
-          "❌ Errore. Riprova tra poco.";
+          bookButton.disabled = false;
 
-      }
+        }
+      );
 
-      button.disabled = false;
-      return;
     }
 
 
-    message.className = "success";
-
-    message.textContent =
-      "✅ Prenotazione effettuata con successo!";
-
-    document.getElementById("bookingForm").reset();
-
-    document.querySelector(".person").click();
-
-    button.disabled = false;
+    times.appendChild(button);
 
   });
+
+
+  const available =
+    TIMES.filter(
+      time => !occupied.includes(time)
+    );
+
+
+  if (available.length === 0) {
+
+    info.className =
+      "info error";
+
+    info.textContent =
+      "Nessun orario disponibile per questo giorno.";
+
+  } else {
+
+    info.className =
+      "info";
+
+    info.textContent =
+      "Scegli uno degli orari disponibili.";
+
+  }
+
+}
+
+
+/* PRENOTAZIONE */
+
+document
+  .getElementById("bookButton")
+  .addEventListener(
+    "click",
+    async () => {
+
+      const name =
+        document
+          .getElementById("name")
+          .value
+          .trim();
+
+      const message =
+        document.getElementById("message");
+
+      const bookButton =
+        document.getElementById("bookButton");
+
+
+      if (!name) {
+
+        message.className =
+          "message error";
+
+        message.textContent =
+          "Inserisci il tuo nome.";
+
+        return;
+
+      }
+
+
+      if (!dateInput.value) {
+
+        message.className =
+          "message error";
+
+        message.textContent =
+          "Scegli una data.";
+
+        return;
+
+      }
+
+
+      if (!selectedTime) {
+
+        message.className =
+          "message error";
+
+        message.textContent =
+          "Scegli un orario.";
+
+        return;
+
+      }
+
+
+      bookButton.disabled = true;
+
+      message.className =
+        "message";
+
+      message.textContent =
+        "Prenotazione in corso...";
+
+
+      const { error } =
+        await supabaseClient
+          .from("prenotazioni")
+          .insert({
+            nome: name,
+            persona: selectedPerson,
+            data: dateInput.value,
+            orario: selectedTime
+          });
+
+
+      if (error) {
+
+        console.error(error);
+
+        message.className =
+          "message error";
+
+
+        if (error.code === "23505") {
+
+          message.textContent =
+            "❌ Questo orario è appena stato prenotato. Scegline un altro.";
+
+        } else {
+
+          message.textContent =
+            "❌ Non è stato possibile completare la prenotazione.";
+
+        }
+
+
+        loadTimes();
+
+        return;
+
+      }
+
+
+      message.className =
+        "message success";
+
+      message.textContent =
+        "✅ Prenotazione effettuata! Ti aspettiamo.";
+
+
+      document
+        .getElementById("name")
+        .value = "";
+
+
+      selectedTime = null;
+
+
+      loadTimes();
+
+    }
+  );
+
 
 </script>
 
