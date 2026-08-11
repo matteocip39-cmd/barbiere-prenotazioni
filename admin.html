@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Area proprietario</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f1ec;
+      color: #211d19;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: auto;
+      padding: 25px 16px 50px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .logo {
+      font-size: 45px;
+    }
+
+    h1 {
+      margin: 8px 0;
+    }
+
+    .subtitle {
+      color: #706960;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      margin-top: 7px;
+      border: 1px solid #d5cec5;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 18px;
+      border: 0;
+      border-radius: 12px;
+      background: #211d19;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .logout {
+      background: #777;
+    }
+
+    .danger {
+      background: #a32e27;
+      margin-top: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .booking {
+      padding: 16px;
+      border: 1px solid #ddd6ce;
+      border-radius: 12px;
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .booking-info strong {
+      font-size: 17px;
+    }
+
+    .muted {
+      color: #706960;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .error {
+      color: #a32e27;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .success {
+      color: #26723a;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .empty {
+      padding: 20px;
+      text-align: center;
+      background: #faf8f5;
+      border-radius: 12px;
+      color: #706960;
+    }
+
+    @media(max-width:600px) {
+      .booking {
+        display: block;
+      }
+
+      .booking button {
+        margin-top: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="logo">🔐</div>
+
+    <h1>Area proprietario</h1>
+
+    <p class="subtitle">
+      Gestione delle prenotazioni
+    </p>
+  </header>
+
+
+  <!-- LOGIN -->
+
+  <div class="card" id="loginCard">
+
+    <h2>Accedi</h2>
+
+    <form id="loginForm">
+
+      <label>Email</label>
+
+      <input
+        id="email"
+        type="email"
+        placeholder="La tua email"
+        required
+      >
+
+      <label>Password</label>
+
+      <input
+        id="password"
+        type="password"
+        placeholder="La tua password"
+        required
+      >
+
+      <button type="submit">
+        ACCEDI
+      </button>
+
+      <div id="loginMessage"></div>
+
+    </form>
+
+  </div>
+
+
+  <!-- AREA PRIVATA -->
+
+  <div class="card hidden" id="adminCard">
+
+    <h2>Le prenotazioni</h2>
+
+    <div id="bookings">
+      Caricamento...
+    </div>
+
+    <button
+      class="logout"
+      id="logoutButton"
+    >
+      ESCI
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+const SUPABASE_URL =
+  "https://nieyajttmfkxowwjqglb.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_9ShmvYVhOPGoU90-Lkwdvw_BVy3dz_X";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* LOGIN */
+
+document
+  .getElementById("loginForm")
+  .addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const email =
+      document.getElementById("email").value.trim();
+
+    const password =
+      document.getElementById("password").value;
+
+    const message =
+      document.getElementById("loginMessage");
+
+    message.className = "";
+
+    message.textContent =
+      "Accesso in corso...";
+
+
+    const { error } =
+      await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+
+    if (error) {
+
+      console.error(error);
+
+      message.className = "error";
+
+      message.textContent =
+        "❌ Email o password non corretti.";
+
+      return;
+    }
+
+
+    message.className = "success";
+
+    message.textContent =
+      "✅ Accesso effettuato!";
+
+    showAdmin();
+
+  });
+
+
+/* MOSTRA AREA PRIVATA */
+
+async function showAdmin() {
+
+  const {
+    data: { user }
+  } = await supabaseClient.auth.getUser();
+
+
+  if (!user) {
+    return;
+  }
+
+
+  document
+    .getElementById("loginCard")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("adminCard")
+    .classList.remove("hidden");
+
+
+  loadBookings();
+
+}
+
+
+/* CARICA PRENOTAZIONI */
+
+async function loadBookings() {
+
+  const container =
+    document.getElementById("bookings");
+
+  container.innerHTML =
+    "Caricamento...";
+
+
+  const { data, error } =
+    await supabaseClient
+      .from("prenotazioni")
+      .select("id, nome, persona, data, orario")
+      .order("data", { ascending: true })
+      .order("orario", { ascending: true });
+
+
+  if (error) {
+
+    console.error(error);
+
+    container.innerHTML =
+      "<p class='error'>Non puoi visualizzare le prenotazioni.</p>";
+
+    return;
+  }
+
+
+  if (!data || data.length === 0) {
+
+    container.innerHTML =
+      "<div class='empty'>Nessuna prenotazione.</div>";
+
+    return;
+  }
+
+
+  container.innerHTML = data.map(item => `
+
+    <div class="booking">
+
+      <div class="booking-info">
+
+        <strong>
+          ${escapeHtml(item.nome)}
+        </strong>
+
+        <div class="muted">
+          ${escapeHtml(item.persona)}
+          •
+          ${escapeHtml(item.data)}
+          •
+          ${escapeHtml(item.orario)}
+        </div>
+
+      </div>
+
+      <button
+        class="danger"
+        onclick="deleteBooking(${item.id})"
+      >
+        ELIMINA
+      </button>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+/* ELIMINA PRENOTAZIONE */
+
+async function deleteBooking(id) {
+
+  if (!confirm(
+    "Vuoi davvero eliminare questa prenotazione?"
+  )) {
+    return;
+  }
+
+
+  const { error } =
+    await supabaseClient
+      .from("prenotazioni")
+      .delete()
+      .eq("id", id);
+
+
+  if (error) {
+
+    alert(
+      "Non è stato possibile eliminare la prenotazione."
+    );
+
+    console.error(error);
+
+    return;
+  }
+
+
+  loadBookings();
+
+}
+
+
+/* LOGOUT */
+
+document
+  .getElementById("logoutButton")
+  .addEventListener("click", async function() {
+
+    await supabaseClient.auth.signOut();
+
+    location.reload();
+
+  });
+
+
+/* PROTEZIONE TESTO */
+
+function escapeHtml(text) {
+
+  return String(text)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+/* CONTROLLA SE SEI GIÀ LOGGATO */
+
+supabaseClient.auth.getSession()
+  .then(({ data }) => {
+
+    if (data.session) {
+      showAdmin();
+    }
+
+  });
+
+</script>
+
+</body>
+</html>
