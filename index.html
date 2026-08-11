@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prenota il tuo barbiere</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f1ec;
+      color: #211d19;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 25px 16px 50px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .logo {
+      font-size: 45px;
+    }
+
+    h1 {
+      margin: 8px 0;
+    }
+
+    .subtitle {
+      color: #706960;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      margin-top: 7px;
+      border: 1px solid #d5cec5;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    .people {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .person {
+      padding: 16px;
+      border: 2px solid #ddd6ce;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .person.selected {
+      border-color: #211d19;
+      background: #eee9e3;
+    }
+
+    .person input {
+      display: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 20px;
+      border: 0;
+      border-radius: 12px;
+      background: #211d19;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .success {
+      color: #26723a;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    footer {
+      text-align: center;
+      color: #777;
+      font-size: 13px;
+    }
+
+    @media(max-width:500px) {
+      .people {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="logo">✂️</div>
+    <h1>Prenota il tuo barbiere</h1>
+    <p class="subtitle">
+      Scegli il barbiere, il giorno e l'orario.
+    </p>
+  </header>
+
+  <div class="card">
+
+    <form id="bookingForm">
+
+      <label>Il tuo nome</label>
+      <input
+        id="name"
+        type="text"
+        placeholder="Nome e cognome"
+        required
+      >
+
+      <label>Scegli il barbiere</label>
+
+      <div class="people">
+
+        <label class="person selected">
+          <input
+            type="radio"
+            name="person"
+            value="Matteo"
+            checked
+          >
+          Matteo
+        </label>
+
+        <label class="person">
+          <input
+            type="radio"
+            name="person"
+            value="Tommaso"
+          >
+          Tommaso
+        </label>
+
+      </div>
+
+      <label>Data</label>
+      <input
+        id="date"
+        type="date"
+        required
+      >
+
+      <label>Orario</label>
+      <input
+        id="time"
+        type="time"
+        required
+      >
+
+      <button type="submit">
+        PRENOTA
+      </button>
+
+      <div id="message"></div>
+
+    </form>
+
+  </div>
+
+  <footer>
+    Prenotazione online ✂️
+  </footer>
+
+</div>
+
+<script>
+
+  const people = document.querySelectorAll(".person");
+
+  people.forEach(person => {
+
+    person.addEventListener("click", () => {
+
+      people.forEach(p =>
+        p.classList.remove("selected")
+      );
+
+      person.classList.add("selected");
+
+    });
+
+  });
+
+  document
+    .getElementById("bookingForm")
+    .addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      const name =
+        document.getElementById("name").value;
+
+      const person =
+        document.querySelector(
+          'input[name="person"]:checked'
+        ).value;
+
+      const date =
+        document.getElementById("date").value;
+
+      const time =
+        document.getElementById("time").value;
+
+      document.getElementById("message").innerHTML =
+        `<p class="success">
+          ✅ Prenotazione richiesta!<br><br>
+          ${name}<br>
+          ${person}<br>
+          ${date} alle ${time}
+        </p>`;
+
+    });
+
+</script>
+
+</body>
+</html>
