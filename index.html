@@ -3,15 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Prenota il tuo barbiere</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -31,17 +28,11 @@
       margin-bottom: 25px;
     }
 
-    .logo {
-      font-size: 45px;
-    }
+    .logo { font-size: 45px; }
 
-    h1 {
-      margin: 8px 0;
-    }
+    h1 { margin: 8px 0; }
 
-    .subtitle {
-      color: #706960;
-    }
+    .subtitle { color: #706960; }
 
     .card {
       background: white;
@@ -113,24 +104,13 @@
       font-weight: bold;
     }
 
-    .success {
-      color: #26723a;
-    }
+    .success { color: #26723a; }
+    .error { color: #a32e27; }
 
-    .error {
-      color: #a32e27;
-    }
-
-    .booking {
-      padding: 13px;
-      border: 1px solid #ddd6ce;
-      border-radius: 12px;
-      margin: 10px 0;
-    }
-
-    .muted {
-      color: #706960;
-      font-size: 14px;
+    footer {
+      text-align: center;
+      color: #777;
+      font-size: 13px;
     }
 
     @media(max-width:500px) {
@@ -174,21 +154,12 @@
       <div class="people">
 
         <label class="person selected">
-          <input
-            type="radio"
-            name="person"
-            value="Matteo"
-            checked
-          >
+          <input type="radio" name="person" value="Matteo" checked>
           Matteo
         </label>
 
         <label class="person">
-          <input
-            type="radio"
-            name="person"
-            value="Tommaso"
-          >
+          <input type="radio" name="person" value="Tommaso">
           Tommaso
         </label>
 
@@ -196,19 +167,11 @@
 
       <label>Data</label>
 
-      <input
-        id="date"
-        type="date"
-        required
-      >
+      <input id="date" type="date" required>
 
       <label>Orario</label>
 
-      <input
-        id="time"
-        type="time"
-        required
-      >
+      <input id="time" type="time" required>
 
       <button id="submitButton" type="submit">
         PRENOTA
@@ -220,15 +183,9 @@
 
   </div>
 
-  <div class="card">
-
-    <h2>Ultime prenotazioni</h2>
-
-    <div id="bookings">
-      Caricamento...
-    </div>
-
-  </div>
+  <footer>
+    Prenotazione online ✂️
+  </footer>
 
 </div>
 
@@ -247,8 +204,6 @@ const supabaseClient =
   );
 
 
-/* Selezione Matteo / Tommaso */
-
 document.querySelectorAll(".person").forEach(person => {
 
   person.addEventListener("click", () => {
@@ -263,66 +218,9 @@ document.querySelectorAll(".person").forEach(person => {
 });
 
 
-/* Data minima = oggi */
-
 document.getElementById("date").min =
   new Date().toISOString().split("T")[0];
 
-
-/* Carica prenotazioni */
-
-async function loadBookings() {
-
-  const bookings =
-    document.getElementById("bookings");
-
-  const { data, error } =
-    await supabaseClient
-      .from("prenotazioni")
-      .select("nome, persona, data, orario")
-      .order("data", { ascending: true })
-      .order("orario", { ascending: true });
-
-  if (error) {
-
-    bookings.innerHTML =
-      "<p class='error'>Errore nel caricamento delle prenotazioni.</p>";
-
-    console.error(error);
-
-    return;
-  }
-
-  if (!data || data.length === 0) {
-
-    bookings.innerHTML =
-      "<p class='muted'>Nessuna prenotazione.</p>";
-
-    return;
-  }
-
-  bookings.innerHTML = data.map(item => `
-
-    <div class="booking">
-
-      <strong>${escapeHtml(item.nome)}</strong>
-
-      <div class="muted">
-        ${escapeHtml(item.persona)}
-        •
-        ${escapeHtml(item.data)}
-        •
-        ${escapeHtml(item.orario)}
-      </div>
-
-    </div>
-
-  `).join("");
-
-}
-
-
-/* Prenotazione */
 
 document
   .getElementById("bookingForm")
@@ -350,13 +248,10 @@ document
     const orario =
       document.getElementById("time").value;
 
-
     button.disabled = true;
 
     message.className = "";
-
-    message.textContent =
-      "Registrazione in corso...";
+    message.textContent = "Prenotazione in corso...";
 
 
     const { error } =
@@ -374,9 +269,9 @@ document
 
       console.error(error);
 
-      if (error.code === "23505") {
+      message.className = "error";
 
-        message.className = "error";
+      if (error.code === "23505") {
 
         message.textContent =
           "❌ Questo orario è già occupato per " +
@@ -384,15 +279,12 @@ document
 
       } else {
 
-        message.className = "error";
-
         message.textContent =
-          "❌ Non è stato possibile effettuare la prenotazione.";
+          "❌ Errore. Riprova tra poco.";
 
       }
 
       button.disabled = false;
-
       return;
     }
 
@@ -400,42 +292,15 @@ document
     message.className = "success";
 
     message.textContent =
-      "✅ Prenotazione effettuata!";
+      "✅ Prenotazione effettuata con successo!";
 
+    document.getElementById("bookingForm").reset();
 
-    document
-      .getElementById("bookingForm")
-      .reset();
-
-
-    document
-      .querySelector(".person")
-      .click();
-
+    document.querySelector(".person").click();
 
     button.disabled = false;
 
-
-    loadBookings();
-
   });
-
-
-/* Protezione visualizzazione testo */
-
-function escapeHtml(text) {
-
-  return String(text)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-
-}
-
-
-loadBookings();
 
 </script>
 
