@@ -1087,23 +1087,96 @@ bookButton.addEventListener(
     }
 
 
-    message.className =
-      "message success";
+  message.className =
+  "message success";
+
+const formattedDate =
+  new Date(selectedDate + "T00:00:00")
+    .toLocaleDateString("it-IT", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+
+const whatsappNumber =
+  selectedPerson === "Matteo"
+    ? "393201519469"
+    : "393274454796";
+
+const whatsappMessage =
+  `Ciao! Sono ${name}, ho appena prenotato ` +
+  `un appuntamento da 𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹.\n\n` +
+  `✂️ Barbiere: ${selectedPerson}\n` +
+  `📅 ${formattedDate}\n` +
+  `🕐 Ore ${selectedTime}`;
+
+const whatsappLink =
+  "https://wa.me/" +
+  whatsappNumber +
+  "?text=" +
+  encodeURIComponent(whatsappMessage);
+
+message.innerHTML = `
+
+  <div style="
+    background:#292929;
+    border:1px solid #444;
+    border-radius:16px;
+    padding:18px;
+    margin-top:15px;
+  ">
+
+    <div style="
+      font-size:20px;
+      margin-bottom:12px;
+    ">
+      ✅ PRENOTAZIONE CONFERMATA
+    </div>
+
+    <div style="
+      color:#ddd;
+      line-height:1.8;
+      margin-bottom:15px;
+    ">
+
+      ✂️ <strong>${selectedPerson}</strong><br>
+
+      📅 ${formattedDate}<br>
+
+      🕐 Ore <strong>${selectedTime}</strong>
+
+    </div>
+
+    <a
+      href="${whatsappLink}"
+      target="_blank"
+      style="
+        display:block;
+        background:#25D366;
+        color:white;
+        text-decoration:none;
+        padding:14px;
+        border-radius:12px;
+        font-weight:bold;
+        text-align:center;
+      "
+    >
+      📱 CONFERMA SU WHATSAPP
+    </a>
+
+  </div>
+
+`;
 
 
-    message.textContent =
-      "✅ Prenotazione effettuata! Ti aspettiamo.";
+nameInput.value =
+  "";
 
+selectedTime =
+  null;
 
-    nameInput.value =
-      "";
-
-
-    selectedTime =
-      null;
-
-
-    loadTimes();
+loadTimes();
 
   }
 );
