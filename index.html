@@ -1,524 +1,1526 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹</title>
+
+<meta
+  name="description"
+  content="Prenota il tuo appuntamento da 𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹"
+>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box}
+
+/* ==============================
+   RESET
+============================== */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
+
   margin:0;
-  background:radial-gradient(circle at top,#292929,#111 48%,#090909);
-  color:#fff;
-  font-family:Arial,Helvetica,sans-serif;
+
   min-height:100vh;
+
+  color:#f7f3ea;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(184,132,55,.18),
+      transparent 38%
+    ),
+    linear-gradient(
+      180deg,
+      #050505 0%,
+      #11100f 48%,
+      #050505 100%
+    );
+
 }
+
+
+/* ==============================
+   SFONDO DECORATIVO
+============================== */
+
+body::before{
+
+  content:"";
+
+  position:fixed;
+
+  inset:0;
+
+  pointer-events:none;
+
+  z-index:-1;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.012)
+      0 1px,
+      transparent 1px 4px
+    );
+
+}
+
+
+/* ==============================
+   CONTENITORE
+============================== */
 
 .container{
+
   width:100%;
-  max-width:650px;
-  margin:auto;
-  padding:18px 14px 45px;
+
+  max-width:780px;
+
+  margin:0 auto;
+
+  padding:
+    24px
+    18px
+    50px;
+
 }
+
+
+/* ==============================
+   HERO
+============================== */
 
 .hero{
+
   text-align:center;
-  padding:20px 8px 25px;
+
+  padding:
+    4px
+    0
+    20px;
+
 }
 
+
 .logo{
-  width:82px;
-  height:82px;
-  margin:auto;
+
+  width:115px;
+
+  height:115px;
+
+  margin:
+    0
+    auto
+    12px;
 
   border-radius:50%;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
   overflow:hidden;
 
-  background:#111;
+  border:
+    2px solid
+    #b7863c;
+
+  background:#070707;
 
   box-shadow:
-    0 10px 35px
-    rgba(201,164,92,.25);
+
+    0 0 0 5px
+    rgba(183,134,60,.08),
+
+    0 15px 35px
+    rgba(0,0,0,.55);
+
 }
 
+
 .logo img{
+
   width:100%;
+
   height:100%;
 
   object-fit:cover;
 
   display:block;
+
 }
-}
+
 
 .hero h1{
-  margin:16px 0 6px;
-  font-size:29px;
-  line-height:1.2;
+
+  margin:0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      27px,
+      6vw,
+      40px
+    );
+
+  letter-spacing:
+    1.3px;
+
+  color:#f4efe6;
+
+  text-shadow:
+    0 2px 18px
+    rgba(0,0,0,.7);
+
 }
+
+
+.hero h1::after{
+
+  content:"";
+
+  display:block;
+
+  width:290px;
+
+  max-width:80%;
+
+  height:1px;
+
+  margin:
+    12px
+    auto
+    8px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #b7863c,
+      transparent
+    );
+
+}
+
 
 .hero p{
+
   margin:0;
-  color:#aaa;
+
+  color:#d7ad67;
+
+  font-size:17px;
+
+  font-weight:600;
+
 }
+
+
+/* ==============================
+   CARD
+============================== */
 
 .card{
-  background:#1c1c1c;
-  border:1px solid #343434;
-  border-radius:22px;
-  padding:20px;
-  box-shadow:0 15px 45px rgba(0,0,0,.35);
+
+  position:relative;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(20,19,18,.98),
+      rgba(10,10,10,.98)
+    );
+
+  border:
+    1px solid
+    #9b6d2d;
+
+  border-radius:19px;
+
+  padding:23px;
+
+  box-shadow:
+
+    0 25px 60px
+    rgba(0,0,0,.62),
+
+    inset
+    0 0 0 1px
+    rgba(255,255,255,.025);
+
 }
+
+
+.card::before{
+
+  content:"✦";
+
+  position:absolute;
+
+  left:18px;
+
+  top:14px;
+
+  color:#b7863c;
+
+}
+
+
+.card::after{
+
+  content:"✦";
+
+  position:absolute;
+
+  right:18px;
+
+  top:14px;
+
+  color:#b7863c;
+
+}
+
+
+/* ==============================
+   STEP
+============================== */
 
 .step{
-  margin-bottom:25px;
+
+  margin-bottom:24px;
+
 }
+
 
 .step-title{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:9px;
+
+  color:#f4efe6;
+
   font-size:17px;
-  font-weight:bold;
-  margin-bottom:12px;
+
+  font-weight:800;
+
+  border-bottom:
+    1px solid
+    rgba(183,134,60,.42);
+
+  padding-bottom:9px;
+
+  margin-bottom:13px;
+
 }
 
-/* BARBIERI */
+
+/* ==============================
+   BARBIERI
+============================== */
 
 .people{
+
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap:13px;
+
 }
+
 
 .person{
-  padding:18px 10px;
-  background:#252525;
-  border:2px solid #444;
-  border-radius:16px;
+
+  padding:
+    17px
+    12px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #171717,
+      #101010
+    );
+
+  border:
+    1px solid
+    #4b4b4b;
+
+  border-radius:14px;
+
   text-align:center;
+
   cursor:pointer;
-  transition:.2s;
+
+  transition:
+    .18s;
+
+  box-shadow:
+    inset
+    0 1px
+    rgba(255,255,255,.04);
+
 }
+
 
 .person:hover{
-  border-color:#c9a45c;
+
+  border-color:
+    #b7863c;
+
+  transform:
+    translateY(-2px);
+
 }
+
 
 .person.selected{
-  background:#332b1e;
-  border-color:#c9a45c;
+
+  border-color:
+    #d09a42;
+
+  background:
+    linear-gradient(
+      145deg,
+      #3a2b18,
+      #211b13
+    );
+
+  box-shadow:
+
+    0 0 0 1px
+    rgba(208,154,66,.18),
+
+    0 10px 25px
+    rgba(0,0,0,.28);
+
 }
+
+
+/* ==============================
+   ICONE BARBIERI
+============================== */
+
+.barber-icon{
+
+  width:62px;
+
+  height:62px;
+
+  margin:
+    0
+    auto
+    10px;
+
+  border:
+    1px solid
+    rgba(201,164,92,.6);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #3a3122,
+      #171717 70%
+    );
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:#d6b66b;
+
+  box-shadow:
+
+    0 6px 18px
+    rgba(0,0,0,.35),
+
+    inset
+    0 0 0 2px
+    rgba(201,164,92,.08);
+
+}
+
+
+.person.selected
+.barber-icon{
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #5a4323,
+      #211a10 70%
+    );
+
+  border-color:
+    #d6b66b;
+
+}
+
+
+.barber-icon svg{
+
+  width:34px;
+
+  height:34px;
+
+  display:block;
+
+  stroke:
+    currentColor;
+
+  fill:none;
+
+  stroke-width:1.8;
+
+  stroke-linecap:round;
+
+  stroke-linejoin:round;
+
+}
+
 
 .person-name{
+
   font-size:20px;
-  font-weight:bold;
+
+  font-weight:800;
+
 }
+
 
 .person-sub{
-  margin-top:5px;
-  color:#aaa;
+
+  margin-top:4px;
+
+  color:#b9b1a4;
+
   font-size:13px;
+
 }
 
-/* GIORNI */
+
+/* ==============================
+   GIORNI
+============================== */
 
 .days-wrapper{
+
   display:flex;
+
   align-items:center;
-  gap:7px;
+
+  gap:8px;
+
 }
+
 
 .arrow{
-  width:42px;
-  min-width:42px;
-  height:48px;
-  margin:0;
-  padding:0;
-  border:1px solid #444;
+
+  width:44px;
+
+  min-width:44px;
+
+  height:50px;
+
+  border:
+    1px solid
+    #484848;
+
   border-radius:12px;
-  background:#292929;
-  color:white;
-  font-size:22px;
+
+  background:#171717;
+
+  color:#f5efe5;
+
+  font-size:24px;
+
   cursor:pointer;
+
 }
+
 
 .arrow:hover{
-  border-color:#c9a45c;
+
+  border-color:
+    #b7863c;
+
+  color:#d9aa62;
+
 }
+
 
 .days{
+
   display:flex;
+
   gap:8px;
+
   overflow:hidden;
+
   flex:1;
+
 }
+
 
 .day{
-  min-width:72px;
-  padding:10px 6px;
-  border:2px solid #444;
-  background:#252525;
-  border-radius:13px;
+
+  min-width:82px;
+
+  padding:
+    9px
+    5px;
+
+  border:
+    1px solid
+    #4b4b4b;
+
+  background:#171717;
+
+  border-radius:12px;
+
   text-align:center;
+
   cursor:pointer;
+
+  transition:.18s;
+
 }
+
 
 .day:hover{
-  border-color:#c9a45c;
+
+  border-color:
+    #b7863c;
+
 }
+
 
 .day.selected{
-  background:#c9a45c;
-  border-color:#c9a45c;
-  color:#111;
+
+  background:
+    linear-gradient(
+      180deg,
+      #d7a654,
+      #b57d2c
+    );
+
+  border-color:
+    #d9a44e;
+
+  color:#14100a;
+
 }
+
 
 .day-name{
-  font-size:12px;
+
+  font-size:11px;
+
   text-transform:uppercase;
-  font-weight:bold;
+
+  font-weight:800;
+
 }
+
 
 .day-number{
-  font-size:20px;
-  font-weight:bold;
-  margin-top:3px;
+
+  font-size:21px;
+
+  font-weight:900;
+
+  margin-top:2px;
+
 }
+
 
 .day-month{
+
   font-size:11px;
-  margin-top:2px;
+
+  margin-top:1px;
+
 }
 
-/* ORARI */
+
+/* ==============================
+   ORARI
+============================== */
 
 .times{
+
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
   gap:9px;
+
 }
+
 
 .time{
-  padding:14px 5px;
-  background:#292929;
-  border:1px solid #454545;
-  color:white;
-  border-radius:11px;
+
+  padding:
+    13px
+    5px;
+
+  background:#181818;
+
+  border:
+    1px solid
+    #454545;
+
+  color:#fff;
+
+  border-radius:10px;
+
   text-align:center;
-  font-weight:bold;
+
+  font-weight:800;
+
   cursor:pointer;
+
+  transition:.15s;
+
 }
+
 
 .time:hover{
-  border-color:#c9a45c;
+
+  border-color:
+    #b7863c;
+
+  background:#211c15;
+
 }
+
 
 .time.selected{
-  background:#c9a45c;
-  border-color:#c9a45c;
-  color:#111;
+
+  background:
+    #c38c36;
+
+  border-color:
+    #e0ae60;
+
+  color:#15110b;
+
 }
+
 
 .time.occupied{
-  background:#141414;
-  border-color:#222;
-  color:#555;
+
+  background:#101010;
+
+  border-color:#242424;
+
+  color:#565656;
+
   cursor:not-allowed;
-  text-decoration:line-through;
+
+  text-decoration:
+    line-through;
+
 }
+
 
 .info{
-  margin:12px 0 0;
+
+  margin:
+    10px
+    0
+    0;
+
   text-align:center;
-  color:#999;
-  font-size:13px;
+
+  color:#9d9589;
+
+  font-size:12px;
+
 }
 
-/* NOME */
+
+.info.error{
+
+  color:#e77d7d;
+
+}
+
+
+/* ==============================
+   INPUT
+============================== */
 
 input[type="text"]{
+
   width:100%;
-  padding:15px;
-  border-radius:13px;
-  border:1px solid #454545;
-  background:#292929;
+
+  padding:
+    15px
+    16px;
+
+  border-radius:11px;
+
+  border:
+    1px solid
+    #4a4a4a;
+
+  background:#151515;
+
   color:#fff;
+
   font-size:16px;
+
   outline:none;
+
 }
+
+
+input[type="text"]::placeholder{
+
+  color:#777;
+
+}
+
 
 input[type="text"]:focus{
-  border-color:#c9a45c;
+
+  border-color:
+    #c39245;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(195,146,69,.1);
+
 }
 
-/* BUTTON */
+
+/* ==============================
+   PULSANTE PRENOTA
+============================== */
 
 .book-button{
+
   width:100%;
+
   padding:17px;
-  margin-top:4px;
+
+  margin-top:1px;
+
   border:0;
-  border-radius:14px;
-  background:linear-gradient(135deg,#dfbd73,#b88c42);
-  color:#111;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #d19a43,
+      #a97022
+    );
+
+  color:#120e08;
+
   font-size:18px;
-  font-weight:800;
+
+  font-weight:900;
+
   cursor:pointer;
+
+  box-shadow:
+    0 8px 20px
+    rgba(0,0,0,.3);
+
 }
+
+
+.book-button:hover{
+
+  filter:
+    brightness(1.08);
+
+}
+
 
 .book-button:disabled{
+
   opacity:.45;
+
   cursor:not-allowed;
+
 }
+
+
+/* ==============================
+   MESSAGGI
+============================== */
 
 .message{
-  margin-top:15px;
+
+  margin-top:14px;
+
   text-align:center;
+
   font-weight:bold;
+
   line-height:1.4;
+
 }
+
 
 .success{
-  color:#69d184;
+
+  color:#72d88a;
+
 }
+
 
 .error{
+
   color:#ff7777;
+
 }
 
-/* FOOTER */
+
+/* ==============================
+   CONFERMA
+============================== */
+
+.confirmation{
+
+  background:
+    linear-gradient(
+      145deg,
+      #292929,
+      #171717
+    );
+
+  border:
+    1px solid
+    #b7863c;
+
+  border-radius:16px;
+
+  padding:19px;
+
+  margin-top:15px;
+
+}
+
+
+.confirmation-title{
+
+  font-size:20px;
+
+  margin-bottom:12px;
+
+  color:#f4efe6;
+
+}
+
+
+.confirmation-details{
+
+  color:#ddd;
+
+  line-height:1.8;
+
+  margin-bottom:15px;
+
+}
+
+
+.whatsapp-button{
+
+  display:block;
+
+  background:#25D366;
+
+  color:white;
+
+  text-decoration:none;
+
+  padding:14px;
+
+  border-radius:12px;
+
+  font-weight:bold;
+
+  text-align:center;
+
+}
+
+
+/* ==============================
+   FOOTER
+============================== */
 
 .footer{
+
   text-align:center;
-  margin-top:28px;
-  color:#999;
-  font-size:14px;
+
+  margin-top:20px;
+
+  padding:
+    16px
+    5px;
+
+  color:#9e9689;
+
+  font-size:13px;
+
   line-height:1.9;
+
+  border-top:
+    1px solid
+    rgba(183,134,60,.24);
+
 }
+
 
 .footer-name{
-  color:white;
-  font-size:17px;
+
+  color:#f3eadb;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:18px;
+
   font-weight:bold;
+
 }
 
+
 .footer a{
-  color:#d8b56d;
+
+  color:#d2a057;
+
   text-decoration:none;
+
   font-weight:bold;
+
 }
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media(max-width:760px){
+
+  .container{
+
+    padding:
+      16px
+      12px
+      35px;
+
+  }
+
+  .hero h1{
+
+    font-size:29px;
+
+  }
+
+  .logo{
+
+    width:98px;
+
+    height:98px;
+
+  }
+
+  .card{
+
+    padding:18px;
+
+  }
+
+  .people{
+
+    grid-template-columns:
+      1fr
+      1fr;
+
+  }
+
+  .days{
+
+    gap:6px;
+
+  }
+
+  .day{
+
+    min-width:69px;
+
+  }
+
+}
+
 
 @media(max-width:500px){
 
   .people{
-    grid-template-columns:1fr;
+
+    grid-template-columns:
+      1fr;
+
   }
 
   .times{
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+      repeat(
+        2,
+        1fr
+      );
+
   }
 
   .hero h1{
+
     font-size:25px;
+
+  }
+
+  .hero p{
+
+    font-size:15px;
+
   }
 
   .card{
+
     padding:17px;
+
   }
 
-  .day{
-    min-width:68px;
-  }
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
 
-  <div class="hero">
 
-    <div class="logo">
-  <img
-    src="logo.png"
-    alt="𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹"
-  >
-</div>
+<!-- ==============================
+     HERO
+============================== -->
 
-    <h1>𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹</h1>
+<header class="hero">
 
-    <p>Prenota il tuo appuntamento</p>
+
+  <div class="logo">
+
+    <img
+      src="logo.png"
+      alt="𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹"
+    >
 
   </div>
 
 
-  <div class="card">
-
-    <!-- BARBIERE -->
-
-    <div class="step">
-
-      <div class="step-title">
-        1. Scegli il barbiere
-      </div>
-
-      <div class="people">
-
-        <div
-          class="person selected"
-          data-person="Matteo"
-        >
-          <div class="person-name">Matteo</div>
-          <div class="person-sub">Barbiere</div>
-        </div>
-
-        <div
-          class="person"
-          data-person="Tommaso"
-        >
-          <div class="person-name">Tommaso</div>
-          <div class="person-sub">Barbiere</div>
-        </div>
-
-      </div>
-
-    </div>
+  <h1>
+    𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹
+  </h1>
 
 
-    <!-- GIORNI -->
+  <p>
+    ✦ Prenota il tuo appuntamento ✦
+  </p>
 
-    <div class="step">
 
-      <div class="step-title">
-        2. Scegli il giorno
-      </div>
+</header>
 
-      <div class="days-wrapper">
 
-        <button
-          class="arrow"
-          id="prevDays"
-          type="button"
-        >
-          ‹
-        </button>
 
-        <div
-          class="days"
-          id="days"
-        ></div>
+<!-- ==============================
+     PRENOTAZIONE
+============================== -->
 
-        <button
-          class="arrow"
-          id="nextDays"
-          type="button"
-        >
-          ›
-        </button>
+<section class="card">
 
-      </div>
+
+  <!-- BARBIERE -->
+
+  <div class="step">
+
+
+    <div class="step-title">
+
+      ✂️ &nbsp;
+      1. Scegli il barbiere
 
     </div>
 
 
-    <!-- ORARI -->
+    <div class="people">
 
-    <div class="step">
 
-      <div class="step-title">
-        3. Scegli l'orario
-      </div>
+      <!-- MATTEO -->
 
       <div
-        id="times"
-        class="times"
+        class="person selected"
+        data-person="Matteo"
+      >
+
+
+        <div
+          class="barber-icon"
+          aria-hidden="true"
+        >
+
+          <svg viewBox="0 0 48 48">
+
+            <circle
+              cx="17"
+              cy="17"
+              r="6"
+            ></circle>
+
+            <circle
+              cx="31"
+              cy="17"
+              r="6"
+            ></circle>
+
+            <path
+              d="M21 21 L35 36"
+            ></path>
+
+            <path
+              d="M27 21 L13 36"
+            ></path>
+
+            <path
+              d="M17 23 C14 28 14 33 17 37"
+            ></path>
+
+            <path
+              d="M31 23 C34 28 34 33 31 37"
+            ></path>
+
+          </svg>
+
+        </div>
+
+
+        <div class="person-name">
+          Matteo
+        </div>
+
+
+        <div class="person-sub">
+          Barbiere
+        </div>
+
+
+      </div>
+
+
+
+      <!-- TOMMASO -->
+
+      <div
+        class="person"
+        data-person="Tommaso"
+      >
+
+
+        <div
+          class="barber-icon"
+          aria-hidden="true"
+        >
+
+          <svg viewBox="0 0 48 48">
+
+            <path
+              d="M24 5 L24 43"
+            ></path>
+
+            <path
+              d="M17 9 L31 9"
+            ></path>
+
+            <path
+              d="M17 39 L31 39"
+            ></path>
+
+            <path
+              d="M20 13 L28 13"
+            ></path>
+
+            <path
+              d="M20 35 L28 35"
+            ></path>
+
+            <path
+              d="M19 17 L29 17"
+            ></path>
+
+            <path
+              d="M19 31 L29 31"
+            ></path>
+
+            <path
+              d="M19 21 L29 21"
+            ></path>
+
+            <path
+              d="M19 27 L29 27"
+            ></path>
+
+            <path
+              d="M19 25 L29 25"
+            ></path>
+
+          </svg>
+
+        </div>
+
+
+        <div class="person-name">
+          Tommaso
+        </div>
+
+
+        <div class="person-sub">
+          Barbiere
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+  <!-- GIORNO -->
+
+  <div class="step">
+
+
+    <div class="step-title">
+
+      📅 &nbsp;
+      2. Scegli il giorno
+
+    </div>
+
+
+    <div class="days-wrapper">
+
+
+      <button
+        class="arrow"
+        id="prevDays"
+        type="button"
+      >
+        ‹
+      </button>
+
+
+      <div
+        class="days"
+        id="days"
       ></div>
 
-      <div
-        id="timeInfo"
-        class="info"
+
+      <button
+        class="arrow"
+        id="nextDays"
+        type="button"
       >
-        Caricamento...
-      </div>
+        ›
+      </button>
+
 
     </div>
 
 
-    <!-- NOME -->
+  </div>
 
-    <div class="step">
 
-      <div class="step-title">
-        4. Il tuo nome
-      </div>
 
-      <input
-        id="name"
-        type="text"
-        maxlength="80"
-        placeholder="Nome e cognome"
-      >
+  <!-- ORARIO -->
+
+  <div class="step">
+
+
+    <div class="step-title">
+
+      🕐 &nbsp;
+      3. Scegli l'orario
 
     </div>
 
-
-    <button
-      id="bookButton"
-      class="book-button"
-      type="button"
-      disabled
-    >
-      PRENOTA ORA
-    </button>
 
     <div
-      id="message"
-      class="message"
+      id="times"
+      class="times"
     ></div>
 
+
+    <div
+      id="timeInfo"
+      class="info"
+    >
+      Caricamento...
+    </div>
+
+
   </div>
 
 
-  <div class="footer">
 
-    <div class="footer-name">
-      𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹
+  <!-- NOME -->
+
+  <div class="step">
+
+
+    <div class="step-title">
+
+      👤 &nbsp;
+      4. Il tuo nome
+
     </div>
 
-    <div>
-      Instagram:
-      @𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹
-    </div>
 
-    <div>
-      WhatsApp:
-      <a
-        href="https://wa.me/393201519469"
-        target="_blank"
-      >
-        3201519469
-      </a>
-      ·
-      <a
-        href="https://wa.me/393274454796"
-        target="_blank"
-      >
-        3274454796
-      </a>
-    </div>
+    <input
+      id="name"
+      type="text"
+      maxlength="80"
+      placeholder="Nome e cognome"
+      autocomplete="name"
+    >
+
 
   </div>
+
+
+
+  <!-- PRENOTA -->
+
+  <button
+    id="bookButton"
+    class="book-button"
+    type="button"
+    disabled
+  >
+
+    PRENOTA ORA
+
+  </button>
+
+
+  <div
+    id="message"
+    class="message"
+  ></div>
+
+
+</section>
+
+
+
+<!-- ==============================
+     FOOTER
+============================== -->
+
+<footer class="footer">
+
+
+  <div class="footer-name">
+
+    💈
+    𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹
+
+  </div>
+
+
+  <div>
+
+    Instagram:
+    @𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹
+
+  </div>
+
+
+  <div>
+
+    WhatsApp:
+
+    <a
+      href="https://wa.me/393201519469"
+      target="_blank"
+      rel="noopener"
+    >
+      3201519469
+    </a>
+
+    ·
+
+    <a
+      href="https://wa.me/393274454796"
+      target="_blank"
+      rel="noopener"
+    >
+      3274454796
+    </a>
+
+  </div>
+
+
+</footer>
+
 
 </div>
+
 
 
 <script>
@@ -530,8 +1532,10 @@ input[type="text"]:focus{
 const SUPABASE_URL =
   "https://nieyajttmfkxowwjqglb.supabase.co";
 
+
 const SUPABASE_KEY =
   "sb_publishable_9ShmvYVhOPGoU90-Lkwdvw_BVy3dz_X";
+
 
 const supabaseClient =
   window.supabase.createClient(
@@ -544,11 +1548,17 @@ const supabaseClient =
    VARIABILI
 ============================== */
 
-let selectedPerson = "Matteo";
-let selectedDate = null;
-let selectedTime = null;
+let selectedPerson =
+  "Matteo";
 
-let dayOffset = 0;
+let selectedDate =
+  null;
+
+let selectedTime =
+  null;
+
+let dayOffset =
+  0;
 
 
 /* ==============================
@@ -556,6 +1566,7 @@ let dayOffset = 0;
 ============================== */
 
 const TIMES = [
+
   "09:00",
   "09:30",
   "10:00",
@@ -563,6 +1574,7 @@ const TIMES = [
   "11:00",
   "11:30",
   "12:00",
+
   "14:00",
   "14:30",
   "15:00",
@@ -574,6 +1586,7 @@ const TIMES = [
   "18:00",
   "18:30",
   "19:00"
+
 ];
 
 
@@ -582,26 +1595,38 @@ const TIMES = [
 ============================== */
 
 const daysContainer =
-  document.getElementById("days");
+  document.getElementById(
+    "days"
+  );
 
 const timesContainer =
-  document.getElementById("times");
+  document.getElementById(
+    "times"
+  );
 
 const timeInfo =
-  document.getElementById("timeInfo");
+  document.getElementById(
+    "timeInfo"
+  );
 
 const bookButton =
-  document.getElementById("bookButton");
+  document.getElementById(
+    "bookButton"
+  );
 
 const message =
-  document.getElementById("message");
+  document.getElementById(
+    "message"
+  );
 
 const nameInput =
-  document.getElementById("name");
+  document.getElementById(
+    "name"
+  );
 
 
 /* ==============================
-   DATA LOCALE
+   DATA
 ============================== */
 
 function dateString(date){
@@ -612,14 +1637,21 @@ function dateString(date){
   const month =
     String(
       date.getMonth() + 1
-    ).padStart(2,"0");
+    ).padStart(
+      2,
+      "0"
+    );
 
   const day =
     String(
       date.getDate()
-    ).padStart(2,"0");
+    ).padStart(
+      2,
+      "0"
+    );
 
   return `${year}-${month}-${day}`;
+
 }
 
 
@@ -629,14 +1661,19 @@ function dateString(date){
 
 function renderDays(){
 
-  daysContainer.innerHTML = "";
+  daysContainer.innerHTML =
+    "";
 
   const today =
     new Date();
 
   today.setHours(
-    0,0,0,0
+    0,
+    0,
+    0,
+    0
   );
+
 
   for(
     let i = 0;
@@ -645,7 +1682,9 @@ function renderDays(){
   ){
 
     const date =
-      new Date(today);
+      new Date(
+        today
+      );
 
     date.setDate(
       today.getDate()
@@ -655,14 +1694,22 @@ function renderDays(){
       i
     );
 
+
     const dateValue =
-      dateString(date);
+      dateString(
+        date
+      );
+
 
     const day =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
+
 
     day.className =
       "day";
+
 
     if(
       selectedDate ===
@@ -680,18 +1727,24 @@ function renderDays(){
       new Intl.DateTimeFormat(
         "it-IT",
         {
-          weekday:"short"
+          weekday:
+            "short"
         }
-      ).format(date);
+      ).format(
+        date
+      );
 
 
     const month =
       new Intl.DateTimeFormat(
         "it-IT",
         {
-          month:"short"
+          month:
+            "short"
         }
-      ).format(date);
+      ).format(
+        date
+      );
 
 
     const isToday =
@@ -702,15 +1755,25 @@ function renderDays(){
     day.innerHTML = `
 
       <div class="day-name">
-        ${isToday ? "OGGI" : dayName}
+
+        ${
+          isToday
+            ? "OGGI"
+            : dayName
+        }
+
       </div>
 
       <div class="day-number">
+
         ${date.getDate()}
+
       </div>
 
       <div class="day-month">
+
         ${month}
+
       </div>
 
     `;
@@ -748,12 +1811,16 @@ function renderDays(){
 ============================== */
 
 document
-  .getElementById("prevDays")
+  .getElementById(
+    "prevDays"
+  )
   .addEventListener(
     "click",
     () => {
 
-      if(dayOffset > 0){
+      if(
+        dayOffset > 0
+      ){
 
         dayOffset--;
 
@@ -770,7 +1837,9 @@ document
 ============================== */
 
 document
-  .getElementById("nextDays")
+  .getElementById(
+    "nextDays"
+  )
   .addEventListener(
     "click",
     () => {
@@ -784,45 +1853,52 @@ document
 
 
 /* ==============================
-   BARBIERE
+   BARBIERI
 ============================== */
 
 document
-  .querySelectorAll(".person")
-  .forEach(person => {
+  .querySelectorAll(
+    ".person"
+  )
+  .forEach(
+    person => {
 
-    person.addEventListener(
-      "click",
-      () => {
+      person.addEventListener(
+        "click",
+        () => {
 
-        document
-          .querySelectorAll(".person")
-          .forEach(p =>
-            p.classList.remove(
-              "selected"
+          document
+            .querySelectorAll(
+              ".person"
             )
+            .forEach(
+              p =>
+                p.classList.remove(
+                  "selected"
+                )
+            );
+
+
+          person.classList.add(
+            "selected"
           );
 
 
-        person.classList.add(
-          "selected"
-        );
+          selectedPerson =
+            person.dataset.person;
 
 
-        selectedPerson =
-          person.dataset.person;
+          selectedTime =
+            null;
 
 
-        selectedTime =
-          null;
+          loadTimes();
 
+        }
+      );
 
-        loadTimes();
-
-      }
-    );
-
-  });
+    }
+  );
 
 
 /* ==============================
@@ -841,7 +1917,9 @@ async function loadTimes(){
     true;
 
 
-  if(!selectedDate){
+  if(
+    !selectedDate
+  ){
 
     timeInfo.textContent =
       "Scegli un giorno.";
@@ -851,145 +1929,181 @@ async function loadTimes(){
   }
 
 
+  timeInfo.className =
+    "info";
+
   timeInfo.textContent =
     "Controllo disponibilità...";
 
 
-  const { data, error } =
-    await supabaseClient.rpc(
-      "get_booked_slots",
-      {
-        p_persona:
-          selectedPerson,
+  try{
 
-        p_data:
-          selectedDate
-      }
-    );
+    const {
+      data,
+      error
+    } =
+      await supabaseClient.rpc(
+        "get_booked_slots",
+        {
 
+          p_persona:
+            selectedPerson,
 
-  if(error){
+          p_data:
+            selectedDate
 
-    console.error(error);
-
-    timeInfo.className =
-      "info error";
-
-    timeInfo.textContent =
-      "Errore nel caricamento degli orari.";
-
-    return;
-
-  }
+        }
+      );
 
 
-  const occupied =
-    (data || []).map(
-      item =>
-        String(
-          item.orario
-        ).substring(0,5)
-    );
+    if(error){
+
+      console.error(
+        error
+      );
+
+      timeInfo.className =
+        "info error";
+
+      timeInfo.textContent =
+        "Errore nel caricamento degli orari.";
+
+      return;
+
+    }
 
 
-  TIMES.forEach(
-    time => {
+    const occupied =
+      (
+        data || []
+      ).map(
+        item =>
+          String(
+            item.orario
+          ).substring(
+            0,
+            5
+          )
+      );
 
-      const button =
-        document.createElement(
-          "div"
-        );
 
-      button.className =
-        "time";
+    TIMES.forEach(
+      time => {
 
-      button.textContent =
-        time;
+        const button =
+          document.createElement(
+            "div"
+          );
 
-
-      if(
-        occupied.includes(time)
-      ){
-
-        button.classList.add(
-          "occupied"
-        );
+        button.className =
+          "time";
 
         button.textContent =
-          time +
-          " • occupato";
+          time;
 
-      }
-      else{
 
-        button.addEventListener(
-          "click",
-          () => {
+        if(
+          occupied.includes(
+            time
+          )
+        ){
 
-            document
-              .querySelectorAll(
-                ".time"
-              )
-              .forEach(t =>
-                t.classList.remove(
-                  "selected"
+          button.classList.add(
+            "occupied"
+          );
+
+          button.textContent =
+            time +
+            " • occupato";
+
+        }
+        else{
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              document
+                .querySelectorAll(
+                  ".time"
                 )
+                .forEach(
+                  t =>
+                    t.classList.remove(
+                      "selected"
+                    )
+                );
+
+
+              button.classList.add(
+                "selected"
               );
 
 
-            button.classList.add(
-              "selected"
-            );
+              selectedTime =
+                time;
 
 
-            selectedTime =
-              time;
+              bookButton.disabled =
+                false;
+
+            }
+          );
+
+        }
 
 
-            bookButton.disabled =
-              false;
-
-          }
+        timesContainer.appendChild(
+          button
         );
 
       }
-
-
-      timesContainer.appendChild(
-        button
-      );
-
-    }
-  );
-
-
-  const available =
-    TIMES.filter(
-      time =>
-        !occupied.includes(
-          time
-        )
     );
 
 
-  if(
-    available.length === 0
-  ){
+    const available =
+      TIMES.filter(
+        time =>
+          !occupied.includes(
+            time
+          )
+      );
+
+
+    if(
+      available.length === 0
+    ){
+
+      timeInfo.className =
+        "info error";
+
+      timeInfo.textContent =
+        "Nessun orario disponibile.";
+
+    }
+    else{
+
+      timeInfo.className =
+        "info";
+
+      timeInfo.textContent =
+        "Scegli l'orario che preferisci.";
+
+    }
+
+
+  }
+  catch(error){
+
+    console.error(
+      error
+    );
 
     timeInfo.className =
       "info error";
 
     timeInfo.textContent =
-      "Nessun orario disponibile.";
-
-  }
-  else{
-
-    timeInfo.className =
-      "info";
-
-    timeInfo.textContent =
-      "Scegli l'orario che preferisci.";
+      "Errore di connessione.";
 
   }
 
@@ -1008,7 +2122,9 @@ bookButton.addEventListener(
       nameInput.value.trim();
 
 
-    if(!name){
+    if(
+      !name
+    ){
 
       message.className =
         "message error";
@@ -1016,12 +2132,16 @@ bookButton.addEventListener(
       message.textContent =
         "Inserisci il tuo nome.";
 
+      nameInput.focus();
+
       return;
 
     }
 
 
-    if(!selectedDate){
+    if(
+      !selectedDate
+    ){
 
       message.className =
         "message error";
@@ -1034,7 +2154,9 @@ bookButton.addEventListener(
     }
 
 
-    if(!selectedTime){
+    if(
+      !selectedTime
+    ){
 
       message.className =
         "message error";
@@ -1054,16 +2176,22 @@ bookButton.addEventListener(
     message.className =
       "message";
 
+
     message.textContent =
       "Prenotazione in corso...";
 
 
-    const { error } =
+    const {
+      error
+    } =
       await supabaseClient
-        .from("prenotazioni")
+        .from(
+          "prenotazioni"
+        )
         .insert({
 
-          nome:name,
+          nome:
+            name,
 
           persona:
             selectedPerson,
@@ -1079,7 +2207,9 @@ bookButton.addEventListener(
 
     if(error){
 
-      console.error(error);
+      console.error(
+        error
+      );
 
       message.className =
         "message error";
@@ -1109,96 +2239,160 @@ bookButton.addEventListener(
     }
 
 
-  message.className =
-  "message success";
+    /* ==========================
+       PRENOTAZIONE CONFERMATA
+    ========================== */
 
-const formattedDate =
-  new Date(selectedDate + "T00:00:00")
-    .toLocaleDateString("it-IT", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric"
-    });
+    const formattedDate =
+      new Date(
+        selectedDate +
+        "T00:00:00"
+      )
+      .toLocaleDateString(
+        "it-IT",
+        {
 
-const whatsappNumber =
-  selectedPerson === "Matteo"
-    ? "393201519469"
-    : "393274454796";
+          weekday:
+            "long",
 
-const whatsappMessage =
-  `Ciao! Sono ${name}, ho appena prenotato ` +
-  `un appuntamento da 𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹.\n\n` +
-  `✂️ Barbiere: ${selectedPerson}\n` +
-  `📅 ${formattedDate}\n` +
-  `🕐 Ore ${selectedTime}`;
+          day:
+            "numeric",
 
-const whatsappLink =
-  "https://wa.me/" +
-  whatsappNumber +
-  "?text=" +
-  encodeURIComponent(whatsappMessage);
+          month:
+            "long",
 
-message.innerHTML = `
+          year:
+            "numeric"
 
-  <div style="
-    background:#292929;
-    border:1px solid #444;
-    border-radius:16px;
-    padding:18px;
-    margin-top:15px;
-  ">
-
-    <div style="
-      font-size:20px;
-      margin-bottom:12px;
-    ">
-      ✅ PRENOTAZIONE CONFERMATA
-    </div>
-
-    <div style="
-      color:#ddd;
-      line-height:1.8;
-      margin-bottom:15px;
-    ">
-
-      ✂️ <strong>${selectedPerson}</strong><br>
-
-      📅 ${formattedDate}<br>
-
-      🕐 Ore <strong>${selectedTime}</strong>
-
-    </div>
-
-    <a
-      href="${whatsappLink}"
-      target="_blank"
-      style="
-        display:block;
-        background:#25D366;
-        color:white;
-        text-decoration:none;
-        padding:14px;
-        border-radius:12px;
-        font-weight:bold;
-        text-align:center;
-      "
-    >
-      📱 CONFERMA SU WHATSAPP
-    </a>
-
-  </div>
-
-`;
+        }
+      );
 
 
-nameInput.value =
-  "";
+    const whatsappNumber =
 
-selectedTime =
-  null;
+      selectedPerson ===
+      "Matteo"
 
-loadTimes();
+      ?
+
+      "393201519469"
+
+      :
+
+      "393274454796";
+
+
+    const whatsappMessage =
+
+      `Ciao! Sono ${name}, ` +
+
+      `ho appena prenotato ` +
+
+      `un appuntamento da ` +
+
+      `𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹.` +
+
+      `\n\n` +
+
+      `✂️ Barbiere: ` +
+
+      `${selectedPerson}` +
+
+      `\n` +
+
+      `📅 ${formattedDate}` +
+
+      `\n` +
+
+      `🕐 Ore ${selectedTime}`;
+
+
+    const whatsappLink =
+
+      "https://wa.me/" +
+
+      whatsappNumber +
+
+      "?text=" +
+
+      encodeURIComponent(
+        whatsappMessage
+      );
+
+
+    message.className =
+      "message success";
+
+
+    message.innerHTML = `
+
+      <div class="confirmation">
+
+        <div class="confirmation-title">
+
+          ✅ PRENOTAZIONE CONFERMATA
+
+        </div>
+
+
+        <div class="confirmation-details">
+
+          ✂️ Barbiere:
+
+          <strong>
+            ${selectedPerson}
+          </strong>
+
+          <br>
+
+          📅 Giorno:
+
+          <strong>
+            ${formattedDate}
+          </strong>
+
+          <br>
+
+          🕐 Orario:
+
+          <strong>
+            ${selectedTime}
+          </strong>
+
+          <br>
+
+          👤 Nome:
+
+          <strong>
+            ${name}
+          </strong>
+
+        </div>
+
+
+        <a
+          href="${whatsappLink}"
+          target="_blank"
+          class="whatsapp-button"
+          rel="noopener"
+        >
+
+          📱 CONFERMA SU WHATSAPP
+
+        </a>
+
+      </div>
+
+    `;
+
+
+    nameInput.value =
+      "";
+
+    selectedTime =
+      null;
+
+    loadTimes();
 
   }
 );
@@ -1211,14 +2405,21 @@ loadTimes();
 const today =
   new Date();
 
+
 selectedDate =
-  dateString(today);
+  dateString(
+    today
+  );
+
 
 renderDays();
+
 
 loadTimes();
 
 </script>
 
+
 </body>
+
 </html>
