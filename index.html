@@ -1,1495 +1,747 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹</title>
-
-<meta
-  name="description"
-  content="Prenota il tuo appuntamento da 𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹"
->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
-/* ==============================
-   RESET
-============================== */
-
 *{
   box-sizing:border-box;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 body{
-
   margin:0;
-
   min-height:100vh;
-
-  color:#f7f3ea;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#fff;
 
   background:
-    radial-gradient(
-      circle at 50% -10%,
-      rgba(184,132,55,.18),
-      transparent 38%
-    ),
     linear-gradient(
-      180deg,
-      #050505 0%,
-      #11100f 48%,
-      #050505 100%
-    );
+      rgba(0,0,0,.72),
+      rgba(0,0,0,.86)
+    ),
+    url("barber-background.webp")
+    center center / cover fixed no-repeat;
 
+  background-color:#080808;
 }
-
-
-/* ==============================
-   SFONDO DECORATIVO
-============================== */
-
-body::before{
-
-  content:"";
-
-  position:fixed;
-
-  inset:0;
-
-  pointer-events:none;
-
-  z-index:-1;
-
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,.012)
-      0 1px,
-      transparent 1px 4px
-    );
-
-}
-
-
-/* ==============================
-   CONTENITORE
-============================== */
 
 .container{
-
   width:100%;
-
-  max-width:780px;
-
-  margin:0 auto;
-
-  padding:
-    24px
-    18px
-    50px;
-
+  max-width:760px;
+  margin:auto;
+  padding:20px 15px 45px;
 }
 
-
-/* ==============================
+/* =========================
    HERO
-============================== */
+========================= */
 
 .hero{
-
   text-align:center;
-
-  padding:
-    4px
-    0
-    20px;
-
+  padding:10px 0 24px;
 }
-
 
 .logo{
-
   width:115px;
-
   height:115px;
-
-  margin:
-    0
-    auto
-    12px;
-
+  margin:0 auto 12px;
   border-radius:50%;
-
   overflow:hidden;
-
-  border:
-    2px solid
-    #b7863c;
-
-  background:#070707;
-
+  border:2px solid #c59648;
+  background:#050505;
   box-shadow:
-
-    0 0 0 5px
-    rgba(183,134,60,.08),
-
-    0 15px 35px
-    rgba(0,0,0,.55);
-
+    0 0 0 5px rgba(197,150,72,.10),
+    0 15px 40px rgba(0,0,0,.7);
 }
-
 
 .logo img{
-
   width:100%;
-
   height:100%;
-
   object-fit:cover;
-
-  display:block;
-
 }
 
-
-.hero h1{
-
+h1{
   margin:0;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size:
-    clamp(
-      27px,
-      6vw,
-      40px
-    );
-
-  letter-spacing:
-    1.3px;
-
-  color:#f4efe6;
-
-  text-shadow:
-    0 2px 18px
-    rgba(0,0,0,.7);
-
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(27px,6vw,42px);
+  letter-spacing:1px;
+  text-shadow:0 3px 20px #000;
 }
 
-
-.hero h1::after{
-
+h1:after{
   content:"";
-
   display:block;
-
-  width:290px;
-
+  width:280px;
   max-width:80%;
-
   height:1px;
-
-  margin:
-    12px
-    auto
-    8px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #b7863c,
-      transparent
-    );
-
+  margin:12px auto 9px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    #c59648,
+    transparent
+  );
 }
-
 
 .hero p{
-
   margin:0;
-
-  color:#d7ad67;
-
-  font-size:17px;
-
-  font-weight:600;
-
+  color:#d4a45a;
+  font-weight:bold;
 }
 
-
-/* ==============================
+/* =========================
    CARD
-============================== */
+========================= */
 
 .card{
-
-  position:relative;
-
   background:
     linear-gradient(
       145deg,
-      rgba(20,19,18,.98),
-      rgba(10,10,10,.98)
+      rgba(20,20,20,.96),
+      rgba(7,7,7,.96)
     );
 
-  border:
-    1px solid
-    #9b6d2d;
-
-  border-radius:19px;
-
-  padding:23px;
+  border:1px solid #a87832;
+  border-radius:20px;
+  padding:22px;
 
   box-shadow:
+    0 25px 70px rgba(0,0,0,.75),
+    inset 0 0 0 1px rgba(255,255,255,.025);
 
-    0 25px 60px
-    rgba(0,0,0,.62),
-
-    inset
-    0 0 0 1px
-    rgba(255,255,255,.025);
-
+  backdrop-filter:blur(8px);
 }
-
-
-.card::before{
-
-  content:"✦";
-
-  position:absolute;
-
-  left:18px;
-
-  top:14px;
-
-  color:#b7863c;
-
-}
-
-
-.card::after{
-
-  content:"✦";
-
-  position:absolute;
-
-  right:18px;
-
-  top:14px;
-
-  color:#b7863c;
-
-}
-
-
-/* ==============================
-   STEP
-============================== */
 
 .step{
-
   margin-bottom:24px;
-
 }
-
 
 .step-title{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:9px;
-
-  color:#f4efe6;
-
   font-size:17px;
-
   font-weight:800;
-
-  border-bottom:
-    1px solid
-    rgba(183,134,60,.42);
-
   padding-bottom:9px;
-
   margin-bottom:13px;
-
+  border-bottom:1px solid rgba(197,150,72,.4);
 }
 
-
-/* ==============================
+/* =========================
    BARBIERI
-============================== */
+========================= */
 
 .people{
-
   display:grid;
-
-  grid-template-columns:
-    1fr
-    1fr;
-
+  grid-template-columns:1fr 1fr;
   gap:13px;
-
 }
-
 
 .person{
-
-  padding:
-    17px
-    12px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #171717,
-      #101010
-    );
-
-  border:
-    1px solid
-    #4b4b4b;
-
-  border-radius:14px;
-
+  padding:17px 10px;
+  background:linear-gradient(145deg,#222,#111);
+  border:1px solid #4b4b4b;
+  border-radius:15px;
   text-align:center;
-
   cursor:pointer;
-
-  transition:
-    .18s;
-
-  box-shadow:
-    inset
-    0 1px
-    rgba(255,255,255,.04);
-
+  transition:.2s;
 }
-
 
 .person:hover{
-
-  border-color:
-    #b7863c;
-
-  transform:
-    translateY(-2px);
-
+  border-color:#c59648;
+  transform:translateY(-2px);
 }
 
-
 .person.selected{
-
-  border-color:
-    #d09a42;
-
   background:
     linear-gradient(
       145deg,
-      #3a2b18,
-      #211b13
+      #3b2c18,
+      #20170c
     );
 
+  border-color:#d2a04e;
+
   box-shadow:
-
-    0 0 0 1px
-    rgba(208,154,66,.18),
-
-    0 10px 25px
-    rgba(0,0,0,.28);
-
+    0 0 0 1px rgba(210,160,78,.15),
+    0 12px 25px rgba(0,0,0,.4);
 }
 
-
-/* ==============================
-   ICONE BARBIERI
-============================== */
-
 .barber-icon{
-
   width:62px;
-
   height:62px;
+  margin:0 auto 9px;
 
-  margin:
-    0
-    auto
-    10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-  border:
-    1px solid
-    rgba(201,164,92,.6);
-
+  border:1px solid #a67b3b;
   border-radius:50%;
 
   background:
     radial-gradient(
       circle at 35% 30%,
-      #3a3122,
-      #171717 70%
+      #45351e,
+      #111
     );
 
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  color:#d6b66b;
-
-  box-shadow:
-
-    0 6px 18px
-    rgba(0,0,0,.35),
-
-    inset
-    0 0 0 2px
-    rgba(201,164,92,.08);
-
+  color:#d5a75b;
 }
-
-
-.person.selected
-.barber-icon{
-
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      #5a4323,
-      #211a10 70%
-    );
-
-  border-color:
-    #d6b66b;
-
-}
-
 
 .barber-icon svg{
-
-  width:34px;
-
-  height:34px;
-
-  display:block;
-
-  stroke:
-    currentColor;
-
+  width:35px;
+  height:35px;
+  stroke:currentColor;
   fill:none;
-
   stroke-width:1.8;
-
   stroke-linecap:round;
-
   stroke-linejoin:round;
-
 }
-
 
 .person-name{
-
   font-size:20px;
-
   font-weight:800;
-
 }
-
 
 .person-sub{
-
   margin-top:4px;
-
-  color:#b9b1a4;
-
+  color:#aaa;
   font-size:13px;
-
 }
 
-
-/* ==============================
+/* =========================
    GIORNI
-============================== */
+========================= */
 
 .days-wrapper{
-
   display:flex;
-
   align-items:center;
-
-  gap:8px;
-
+  gap:7px;
 }
-
 
 .arrow{
-
-  width:44px;
-
-  min-width:44px;
-
+  width:43px;
+  min-width:43px;
   height:50px;
-
-  border:
-    1px solid
-    #484848;
-
+  border:1px solid #484848;
   border-radius:12px;
-
   background:#171717;
-
-  color:#f5efe5;
-
+  color:#fff;
   font-size:24px;
-
   cursor:pointer;
-
 }
-
 
 .arrow:hover{
-
-  border-color:
-    #b7863c;
-
-  color:#d9aa62;
-
+  border-color:#c59648;
+  color:#d5a75b;
 }
-
 
 .days{
-
   display:flex;
-
-  gap:8px;
-
+  gap:7px;
   overflow:hidden;
-
   flex:1;
-
 }
-
 
 .day{
-
-  min-width:82px;
-
-  padding:
-    9px
-    5px;
-
-  border:
-    1px solid
-    #4b4b4b;
-
-  background:#171717;
-
+  min-width:78px;
+  padding:9px 4px;
+  background:#191919;
+  border:1px solid #484848;
   border-radius:12px;
-
   text-align:center;
-
   cursor:pointer;
-
-  transition:.18s;
-
 }
-
 
 .day:hover{
-
-  border-color:
-    #b7863c;
-
+  border-color:#c59648;
 }
 
-
 .day.selected{
-
   background:
     linear-gradient(
       180deg,
-      #d7a654,
-      #b57d2c
+      #d5a354,
+      #ad7629
     );
 
-  border-color:
-    #d9a44e;
-
-  color:#14100a;
-
+  color:#15100a;
+  border-color:#dfad5c;
 }
-
 
 .day-name{
-
-  font-size:11px;
-
+  font-size:10px;
   text-transform:uppercase;
-
   font-weight:800;
-
 }
-
 
 .day-number{
-
   font-size:21px;
-
   font-weight:900;
-
   margin-top:2px;
-
 }
-
 
 .day-month{
-
-  font-size:11px;
-
-  margin-top:1px;
-
+  font-size:10px;
 }
 
-
-/* ==============================
+/* =========================
    ORARI
-============================== */
+========================= */
 
 .times{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(
-      3,
-      1fr
-    );
-
+  grid-template-columns:repeat(3,1fr);
   gap:9px;
-
 }
-
 
 .time{
-
-  padding:
-    13px
-    5px;
-
-  background:#181818;
-
-  border:
-    1px solid
-    #454545;
-
-  color:#fff;
-
+  padding:13px 5px;
+  background:#1c1c1c;
+  border:1px solid #454545;
   border-radius:10px;
-
   text-align:center;
-
   font-weight:800;
-
   cursor:pointer;
-
-  transition:.15s;
-
 }
-
 
 .time:hover{
-
-  border-color:
-    #b7863c;
-
-  background:#211c15;
-
+  border-color:#c59648;
 }
-
 
 .time.selected{
-
-  background:
-    #c38c36;
-
-  border-color:
-    #e0ae60;
-
-  color:#15110b;
-
+  background:#c59648;
+  border-color:#e0b568;
+  color:#120e08;
 }
-
 
 .time.occupied{
-
   background:#101010;
-
-  border-color:#242424;
-
-  color:#565656;
-
+  color:#555;
+  border-color:#292929;
+  text-decoration:line-through;
   cursor:not-allowed;
-
-  text-decoration:
-    line-through;
-
 }
-
 
 .info{
-
-  margin:
-    10px
-    0
-    0;
-
   text-align:center;
-
-  color:#9d9589;
-
+  color:#999;
   font-size:12px;
-
+  margin-top:10px;
 }
-
 
 .info.error{
-
-  color:#e77d7d;
-
+  color:#ff7777;
 }
 
+/* =========================
+   NOME
+========================= */
 
-/* ==============================
-   INPUT
-============================== */
-
-input[type="text"]{
-
+input{
   width:100%;
-
-  padding:
-    15px
-    16px;
-
+  padding:15px;
   border-radius:11px;
-
-  border:
-    1px solid
-    #4a4a4a;
-
+  border:1px solid #484848;
   background:#151515;
-
-  color:#fff;
-
+  color:white;
   font-size:16px;
-
   outline:none;
-
 }
 
-
-input[type="text"]::placeholder{
-
-  color:#777;
-
+input:focus{
+  border-color:#c59648;
 }
 
-
-input[type="text"]:focus{
-
-  border-color:
-    #c39245;
-
-  box-shadow:
-    0 0 0 3px
-    rgba(195,146,69,.1);
-
-}
-
-
-/* ==============================
-   PULSANTE PRENOTA
-============================== */
+/* =========================
+   PRENOTA
+========================= */
 
 .book-button{
-
   width:100%;
-
   padding:17px;
-
-  margin-top:1px;
-
   border:0;
-
   border-radius:12px;
 
   background:
     linear-gradient(
       180deg,
-      #d19a43,
+      #d3a052,
       #a97022
     );
 
   color:#120e08;
-
   font-size:18px;
-
   font-weight:900;
-
   cursor:pointer;
-
-  box-shadow:
-    0 8px 20px
-    rgba(0,0,0,.3);
-
 }
-
-
-.book-button:hover{
-
-  filter:
-    brightness(1.08);
-
-}
-
 
 .book-button:disabled{
-
   opacity:.45;
-
   cursor:not-allowed;
-
 }
-
-
-/* ==============================
-   MESSAGGI
-============================== */
 
 .message{
-
   margin-top:14px;
-
   text-align:center;
-
   font-weight:bold;
-
-  line-height:1.4;
-
 }
-
-
-.success{
-
-  color:#72d88a;
-
-}
-
 
 .error{
-
   color:#ff7777;
-
 }
 
+.success{
+  color:#72db8b;
+}
 
-/* ==============================
+/* =========================
    CONFERMA
-============================== */
+========================= */
 
 .confirmation{
-
-  background:
-    linear-gradient(
-      145deg,
-      #292929,
-      #171717
-    );
-
-  border:
-    1px solid
-    #b7863c;
-
-  border-radius:16px;
-
-  padding:19px;
-
   margin-top:15px;
-
+  padding:18px;
+  background:#191919;
+  border:1px solid #b8873d;
+  border-radius:15px;
 }
-
 
 .confirmation-title{
-
-  font-size:20px;
-
-  margin-bottom:12px;
-
-  color:#f4efe6;
-
+  color:white;
+  font-size:19px;
+  margin-bottom:10px;
 }
-
 
 .confirmation-details{
-
   color:#ddd;
-
   line-height:1.8;
-
-  margin-bottom:15px;
-
+  margin-bottom:14px;
 }
-
 
 .whatsapp-button{
-
   display:block;
-
-  background:#25D366;
-
-  color:white;
-
-  text-decoration:none;
-
   padding:14px;
-
-  border-radius:12px;
-
+  background:#25D366;
+  color:white;
+  border-radius:11px;
+  text-decoration:none;
   font-weight:bold;
-
-  text-align:center;
-
 }
 
-
-/* ==============================
+/* =========================
    FOOTER
-============================== */
+========================= */
 
 .footer{
-
   text-align:center;
-
-  margin-top:20px;
-
-  padding:
-    16px
-    5px;
-
-  color:#9e9689;
-
+  margin-top:22px;
+  padding-top:17px;
+  border-top:1px solid rgba(197,150,72,.3);
+  color:#999;
   font-size:13px;
-
   line-height:1.9;
-
-  border-top:
-    1px solid
-    rgba(183,134,60,.24);
-
 }
-
 
 .footer-name{
-
-  color:#f3eadb;
-
-  font-family:
-    Georgia,
-    serif;
-
+  color:#f2eadc;
+  font-family:Georgia,serif;
   font-size:18px;
-
   font-weight:bold;
-
 }
-
 
 .footer a{
-
-  color:#d2a057;
-
+  color:#d2a15a;
   text-decoration:none;
-
   font-weight:bold;
-
 }
 
-
-/* ==============================
+/* =========================
    MOBILE
-============================== */
+========================= */
 
-@media(max-width:760px){
+@media(max-width:600px){
 
-  .container{
-
-    padding:
-      16px
-      12px
-      35px;
-
+  body{
+    background:
+      linear-gradient(
+        rgba(0,0,0,.84),
+        rgba(0,0,0,.94)
+      ),
+      url("barber-background.webp")
+      center center / cover fixed no-repeat;
   }
 
-  .hero h1{
-
-    font-size:29px;
-
+  .container{
+    padding:13px 10px 35px;
   }
 
   .logo{
-
     width:98px;
-
     height:98px;
-
   }
 
   .card{
-
-    padding:18px;
-
-  }
-
-  .people{
-
-    grid-template-columns:
-      1fr
-      1fr;
-
-  }
-
-  .days{
-
-    gap:6px;
-
-  }
-
-  .day{
-
-    min-width:69px;
-
-  }
-
-}
-
-
-@media(max-width:500px){
-
-  .people{
-
-    grid-template-columns:
-      1fr;
-
+    padding:17px;
   }
 
   .times{
-
-    grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
-
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .hero h1{
-
-    font-size:25px;
-
+  .day{
+    min-width:68px;
   }
 
-  .hero p{
-
-    font-size:15px;
-
-  }
-
-  .card{
-
-    padding:17px;
-
+  h1{
+    font-size:26px;
   }
 
 }
 
 </style>
-
 </head>
 
 
 <body>
 
-
 <div class="container">
-
-
-<!-- ==============================
-     HERO
-============================== -->
 
 <header class="hero">
 
-
   <div class="logo">
-
     <img
       src="logo.png"
       alt="𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹"
     >
-
   </div>
-
 
   <h1>
     𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹
   </h1>
 
-
   <p>
-    ✦ Prenota il tuo appuntamento ✦
+    Prenota il tuo appuntamento
   </p>
-
 
 </header>
 
 
-
-<!-- ==============================
-     PRENOTAZIONE
-============================== -->
-
 <section class="card">
 
 
-  <!-- BARBIERE -->
+<!-- BARBIERI -->
 
-  <div class="step">
+<div class="step">
 
+  <div class="step-title">
+    ① Scegli il barbiere
+  </div>
 
-    <div class="step-title">
-
-      ✂️ &nbsp;
-      1. Scegli il barbiere
-
-    </div>
+  <div class="people">
 
 
-    <div class="people">
+    <div
+      class="person selected"
+      data-person="Matteo"
+    >
 
+      <div class="barber-icon">
 
-      <!-- MATTEO -->
+        <svg viewBox="0 0 48 48">
 
-      <div
-        class="person selected"
-        data-person="Matteo"
-      >
+          <circle
+            cx="17"
+            cy="17"
+            r="6"
+          />
 
+          <circle
+            cx="31"
+            cy="17"
+            r="6"
+          />
 
-        <div
-          class="barber-icon"
-          aria-hidden="true"
-        >
+          <path
+            d="M21 21 L35 36"
+          />
 
-          <svg viewBox="0 0 48 48">
+          <path
+            d="M27 21 L13 36"
+          />
 
-            <circle
-              cx="17"
-              cy="17"
-              r="6"
-            ></circle>
+          <path
+            d="M17 23 C14 28 14 33 17 37"
+          />
 
-            <circle
-              cx="31"
-              cy="17"
-              r="6"
-            ></circle>
+          <path
+            d="M31 23 C34 28 34 33 31 37"
+          />
 
-            <path
-              d="M21 21 L35 36"
-            ></path>
-
-            <path
-              d="M27 21 L13 36"
-            ></path>
-
-            <path
-              d="M17 23 C14 28 14 33 17 37"
-            ></path>
-
-            <path
-              d="M31 23 C34 28 34 33 31 37"
-            ></path>
-
-          </svg>
-
-        </div>
-
-
-        <div class="person-name">
-          Matteo
-        </div>
-
-
-        <div class="person-sub">
-          Barbiere
-        </div>
-
+        </svg>
 
       </div>
 
-
-
-      <!-- TOMMASO -->
-
-      <div
-        class="person"
-        data-person="Tommaso"
-      >
-
-
-        <div
-          class="barber-icon"
-          aria-hidden="true"
-        >
-
-          <svg viewBox="0 0 48 48">
-
-            <path
-              d="M24 5 L24 43"
-            ></path>
-
-            <path
-              d="M17 9 L31 9"
-            ></path>
-
-            <path
-              d="M17 39 L31 39"
-            ></path>
-
-            <path
-              d="M20 13 L28 13"
-            ></path>
-
-            <path
-              d="M20 35 L28 35"
-            ></path>
-
-            <path
-              d="M19 17 L29 17"
-            ></path>
-
-            <path
-              d="M19 31 L29 31"
-            ></path>
-
-            <path
-              d="M19 21 L29 21"
-            ></path>
-
-            <path
-              d="M19 27 L29 27"
-            ></path>
-
-            <path
-              d="M19 25 L29 25"
-            ></path>
-
-          </svg>
-
-        </div>
-
-
-        <div class="person-name">
-          Tommaso
-        </div>
-
-
-        <div class="person-sub">
-          Barbiere
-        </div>
-
-
+      <div class="person-name">
+        Matteo
       </div>
 
-
-    </div>
-
-  </div>
-
-
-
-  <!-- GIORNO -->
-
-  <div class="step">
-
-
-    <div class="step-title">
-
-      📅 &nbsp;
-      2. Scegli il giorno
-
-    </div>
-
-
-    <div class="days-wrapper">
-
-
-      <button
-        class="arrow"
-        id="prevDays"
-        type="button"
-      >
-        ‹
-      </button>
-
-
-      <div
-        class="days"
-        id="days"
-      ></div>
-
-
-      <button
-        class="arrow"
-        id="nextDays"
-        type="button"
-      >
-        ›
-      </button>
-
-
-    </div>
-
-
-  </div>
-
-
-
-  <!-- ORARIO -->
-
-  <div class="step">
-
-
-    <div class="step-title">
-
-      🕐 &nbsp;
-      3. Scegli l'orario
+      <div class="person-sub">
+        Barbiere
+      </div>
 
     </div>
 
 
     <div
-      id="times"
-      class="times"
+      class="person"
+      data-person="Tommaso"
+    >
+
+      <div class="barber-icon">
+
+        <svg viewBox="0 0 48 48">
+
+          <path d="M24 5 L24 43"/>
+          <path d="M17 9 L31 9"/>
+          <path d="M17 39 L31 39"/>
+          <path d="M19 15 L29 15"/>
+          <path d="M19 20 L29 20"/>
+          <path d="M19 25 L29 25"/>
+          <path d="M19 30 L29 30"/>
+          <path d="M19 35 L29 35"/>
+
+        </svg>
+
+      </div>
+
+      <div class="person-name">
+        Tommaso
+      </div>
+
+      <div class="person-sub">
+        Barbiere
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<!-- GIORNI -->
+
+<div class="step">
+
+  <div class="step-title">
+    ② Scegli il giorno
+  </div>
+
+  <div class="days-wrapper">
+
+    <button
+      id="prevDays"
+      class="arrow"
+      type="button"
+    >
+      ‹
+    </button>
+
+    <div
+      id="days"
+      class="days"
     ></div>
 
-
-    <div
-      id="timeInfo"
-      class="info"
+    <button
+      id="nextDays"
+      class="arrow"
+      type="button"
     >
-      Caricamento...
-    </div>
-
+      ›
+    </button>
 
   </div>
 
+</div>
 
 
-  <!-- NOME -->
+<!-- ORARI -->
 
-  <div class="step">
+<div class="step">
 
-
-    <div class="step-title">
-
-      👤 &nbsp;
-      4. Il tuo nome
-
-    </div>
-
-
-    <input
-      id="name"
-      type="text"
-      maxlength="80"
-      placeholder="Nome e cognome"
-      autocomplete="name"
-    >
-
-
+  <div class="step-title">
+    ③ Scegli l'orario
   </div>
-
-
-
-  <!-- PRENOTA -->
-
-  <button
-    id="bookButton"
-    class="book-button"
-    type="button"
-    disabled
-  >
-
-    PRENOTA ORA
-
-  </button>
-
 
   <div
-    id="message"
-    class="message"
+    id="times"
+    class="times"
   ></div>
+
+  <div
+    id="timeInfo"
+    class="info"
+  >
+    Caricamento...
+  </div>
+
+</div>
+
+
+<!-- NOME -->
+
+<div class="step">
+
+  <div class="step-title">
+    ④ Il tuo nome
+  </div>
+
+  <input
+    id="name"
+    type="text"
+    maxlength="80"
+    placeholder="Nome e cognome"
+    autocomplete="name"
+  >
+
+</div>
+
+
+<button
+  id="bookButton"
+  class="book-button"
+  disabled
+  type="button"
+>
+  ✂️ PRENOTA ORA
+</button>
+
+
+<div
+  id="message"
+  class="message"
+></div>
 
 
 </section>
 
 
-
-<!-- ==============================
-     FOOTER
-============================== -->
-
 <footer class="footer">
 
-
   <div class="footer-name">
-
-    💈
-    𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹
-
+    💈 𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹
   </div>
-
 
   <div>
-
     Instagram:
     @𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹
-
   </div>
-
 
   <div>
 
@@ -1498,7 +750,6 @@ input[type="text"]:focus{
     <a
       href="https://wa.me/393201519469"
       target="_blank"
-      rel="noopener"
     >
       3201519469
     </a>
@@ -1508,34 +759,28 @@ input[type="text"]:focus{
     <a
       href="https://wa.me/393274454796"
       target="_blank"
-      rel="noopener"
     >
       3274454796
     </a>
 
   </div>
 
-
 </footer>
-
 
 </div>
 
 
-
 <script>
 
-/* ==============================
+/* =====================================================
    SUPABASE
-============================== */
+===================================================== */
 
 const SUPABASE_URL =
   "https://nieyajttmfkxowwjqglb.supabase.co";
 
-
 const SUPABASE_KEY =
   "sb_publishable_9ShmvYVhOPGoU90-Lkwdvw_BVy3dz_X";
-
 
 const supabaseClient =
   window.supabase.createClient(
@@ -1544,45 +789,43 @@ const supabaseClient =
   );
 
 
-/* ==============================
-   VARIABILI
-============================== */
+/* =====================================================
+   STATO
+===================================================== */
 
-let selectedPerson =
-  "Matteo";
-
-let selectedDate =
-  null;
-
-let selectedTime =
-  null;
-
-let dayOffset =
-  0;
+let selectedPerson = "Matteo";
+let selectedDate = null;
+let selectedTime = null;
+let dayOffset = 0;
 
 
-/* ==============================
+/* =====================================================
    ORARI
-============================== */
+===================================================== */
 
 const TIMES = [
 
   "09:00",
   "09:30",
   "10:00",
+
   "10:30",
   "11:00",
   "11:30",
+
   "12:00",
 
   "14:00",
   "14:30",
+
   "15:00",
   "15:30",
   "16:00",
+
   "16:30",
   "17:00",
   "17:30",
+
   "18:00",
   "18:30",
   "19:00"
@@ -1590,44 +833,32 @@ const TIMES = [
 ];
 
 
-/* ==============================
+/* =====================================================
    ELEMENTI
-============================== */
+===================================================== */
 
 const daysContainer =
-  document.getElementById(
-    "days"
-  );
+  document.getElementById("days");
 
 const timesContainer =
-  document.getElementById(
-    "times"
-  );
+  document.getElementById("times");
 
 const timeInfo =
-  document.getElementById(
-    "timeInfo"
-  );
+  document.getElementById("timeInfo");
 
 const bookButton =
-  document.getElementById(
-    "bookButton"
-  );
+  document.getElementById("bookButton");
 
 const message =
-  document.getElementById(
-    "message"
-  );
+  document.getElementById("message");
 
 const nameInput =
-  document.getElementById(
-    "name"
-  );
+  document.getElementById("name");
 
 
-/* ==============================
+/* =====================================================
    DATA
-============================== */
+===================================================== */
 
 function dateString(date){
 
@@ -1637,43 +868,30 @@ function dateString(date){
   const month =
     String(
       date.getMonth() + 1
-    ).padStart(
-      2,
-      "0"
-    );
+    ).padStart(2,"0");
 
   const day =
     String(
       date.getDate()
-    ).padStart(
-      2,
-      "0"
-    );
+    ).padStart(2,"0");
 
   return `${year}-${month}-${day}`;
-
 }
 
 
-/* ==============================
+/* =====================================================
    GIORNI
-============================== */
+===================================================== */
 
 function renderDays(){
 
-  daysContainer.innerHTML =
-    "";
+  daysContainer.innerHTML = "";
 
-  const today =
-    new Date();
+  const today = new Date();
 
   today.setHours(
-    0,
-    0,
-    0,
-    0
+    0,0,0,0
   );
-
 
   for(
     let i = 0;
@@ -1682,9 +900,7 @@ function renderDays(){
   ){
 
     const date =
-      new Date(
-        today
-      );
+      new Date(today);
 
     date.setDate(
       today.getDate()
@@ -1694,26 +910,16 @@ function renderDays(){
       i
     );
 
-
-    const dateValue =
-      dateString(
-        date
-      );
-
+    const value =
+      dateString(date);
 
     const day =
-      document.createElement(
-        "div"
-      );
+      document.createElement("div");
 
-
-    day.className =
-      "day";
-
+    day.className = "day";
 
     if(
-      selectedDate ===
-      dateValue
+      selectedDate === value
     ){
 
       day.classList.add(
@@ -1722,72 +928,51 @@ function renderDays(){
 
     }
 
-
-    const dayName =
+    const weekday =
       new Intl.DateTimeFormat(
         "it-IT",
         {
-          weekday:
-            "short"
+          weekday:"short"
         }
-      ).format(
-        date
-      );
-
+      ).format(date);
 
     const month =
       new Intl.DateTimeFormat(
         "it-IT",
         {
-          month:
-            "short"
+          month:"short"
         }
-      ).format(
-        date
-      );
+      ).format(date);
 
-
-    const isToday =
+    const todayText =
       i === 0 &&
-      dayOffset === 0;
-
+      dayOffset === 0
+        ? "OGGI"
+        : weekday;
 
     day.innerHTML = `
 
       <div class="day-name">
-
-        ${
-          isToday
-            ? "OGGI"
-            : dayName
-        }
-
+        ${todayText}
       </div>
 
       <div class="day-number">
-
         ${date.getDate()}
-
       </div>
 
       <div class="day-month">
-
         ${month}
-
       </div>
 
     `;
-
 
     day.addEventListener(
       "click",
       () => {
 
-        selectedDate =
-          dateValue;
+        selectedDate = value;
 
-        selectedTime =
-          null;
+        selectedTime = null;
 
         renderDays();
 
@@ -1796,31 +981,24 @@ function renderDays(){
       }
     );
 
-
-    daysContainer.appendChild(
-      day
-    );
+    daysContainer.appendChild(day);
 
   }
 
 }
 
 
-/* ==============================
-   FRECCIA INDIETRO
-============================== */
+/* =====================================================
+   FRECCE
+===================================================== */
 
 document
-  .getElementById(
-    "prevDays"
-  )
+  .getElementById("prevDays")
   .addEventListener(
     "click",
     () => {
 
-      if(
-        dayOffset > 0
-      ){
+      if(dayOffset > 0){
 
         dayOffset--;
 
@@ -1832,14 +1010,8 @@ document
   );
 
 
-/* ==============================
-   FRECCIA AVANTI
-============================== */
-
 document
-  .getElementById(
-    "nextDays"
-  )
+  .getElementById("nextDays")
   .addEventListener(
     "click",
     () => {
@@ -1852,14 +1024,12 @@ document
   );
 
 
-/* ==============================
+/* =====================================================
    BARBIERI
-============================== */
+===================================================== */
 
 document
-  .querySelectorAll(
-    ".person"
-  )
+  .querySelectorAll(".person")
   .forEach(
     person => {
 
@@ -1868,9 +1038,7 @@ document
         () => {
 
           document
-            .querySelectorAll(
-              ".person"
-            )
+            .querySelectorAll(".person")
             .forEach(
               p =>
                 p.classList.remove(
@@ -1878,19 +1046,14 @@ document
                 )
             );
 
-
           person.classList.add(
             "selected"
           );
 
-
           selectedPerson =
             person.dataset.person;
 
-
-          selectedTime =
-            null;
-
+          selectedTime = null;
 
           loadTimes();
 
@@ -1901,36 +1064,19 @@ document
   );
 
 
-/* ==============================
-   CARICA ORARI
-============================== */
+/* =====================================================
+   ORARI DISPONIBILI
+===================================================== */
 
 async function loadTimes(){
 
-  timesContainer.innerHTML =
-    "";
+  timesContainer.innerHTML = "";
 
-  selectedTime =
-    null;
+  selectedTime = null;
 
-  bookButton.disabled =
-    true;
+  bookButton.disabled = true;
 
-
-  if(
-    !selectedDate
-  ){
-
-    timeInfo.textContent =
-      "Scegli un giorno.";
-
-    return;
-
-  }
-
-
-  timeInfo.className =
-    "info";
+  timeInfo.className = "info";
 
   timeInfo.textContent =
     "Controllo disponibilità...";
@@ -1945,22 +1091,18 @@ async function loadTimes(){
       await supabaseClient.rpc(
         "get_booked_slots",
         {
-
           p_persona:
             selectedPerson,
 
           p_data:
             selectedDate
-
         }
       );
 
 
     if(error){
 
-      console.error(
-        error
-      );
+      console.error(error);
 
       timeInfo.className =
         "info error";
@@ -1974,16 +1116,11 @@ async function loadTimes(){
 
 
     const occupied =
-      (
-        data || []
-      ).map(
+      (data || []).map(
         item =>
           String(
             item.orario
-          ).substring(
-            0,
-            5
-          )
+          ).substring(0,5)
       );
 
 
@@ -1991,21 +1128,15 @@ async function loadTimes(){
       time => {
 
         const button =
-          document.createElement(
-            "div"
-          );
+          document.createElement("div");
 
-        button.className =
-          "time";
+        button.className = "time";
 
-        button.textContent =
-          time;
+        button.textContent = time;
 
 
         if(
-          occupied.includes(
-            time
-          )
+          occupied.includes(time)
         ){
 
           button.classList.add(
@@ -2013,8 +1144,7 @@ async function loadTimes(){
           );
 
           button.textContent =
-            time +
-            " • occupato";
+            time + " • occupato";
 
         }
         else{
@@ -2024,9 +1154,7 @@ async function loadTimes(){
             () => {
 
               document
-                .querySelectorAll(
-                  ".time"
-                )
+                .querySelectorAll(".time")
                 .forEach(
                   t =>
                     t.classList.remove(
@@ -2034,15 +1162,11 @@ async function loadTimes(){
                     )
                 );
 
-
               button.classList.add(
                 "selected"
               );
 
-
-              selectedTime =
-                time;
-
+              selectedTime = time;
 
               bookButton.disabled =
                 false;
@@ -2064,40 +1188,27 @@ async function loadTimes(){
     const available =
       TIMES.filter(
         time =>
-          !occupied.includes(
-            time
-          )
+          !occupied.includes(time)
       );
 
 
-    if(
-      available.length === 0
-    ){
+    timeInfo.textContent =
+      available.length
+        ? "Scegli l'orario che preferisci."
+        : "Nessun orario disponibile.";
+
+
+    if(!available.length){
 
       timeInfo.className =
         "info error";
 
-      timeInfo.textContent =
-        "Nessun orario disponibile.";
-
     }
-    else{
-
-      timeInfo.className =
-        "info";
-
-      timeInfo.textContent =
-        "Scegli l'orario che preferisci.";
-
-    }
-
 
   }
   catch(error){
 
-    console.error(
-      error
-    );
+    console.error(error);
 
     timeInfo.className =
       "info error";
@@ -2110,9 +1221,9 @@ async function loadTimes(){
 }
 
 
-/* ==============================
-   PRENOTAZIONE
-============================== */
+/* =====================================================
+   PRENOTA
+===================================================== */
 
 bookButton.addEventListener(
   "click",
@@ -2122,9 +1233,7 @@ bookButton.addEventListener(
       nameInput.value.trim();
 
 
-    if(
-      !name
-    ){
+    if(!name){
 
       message.className =
         "message error";
@@ -2139,24 +1248,7 @@ bookButton.addEventListener(
     }
 
 
-    if(
-      !selectedDate
-    ){
-
-      message.className =
-        "message error";
-
-      message.textContent =
-        "Scegli un giorno.";
-
-      return;
-
-    }
-
-
-    if(
-      !selectedTime
-    ){
+    if(!selectedTime){
 
       message.className =
         "message error";
@@ -2169,13 +1261,10 @@ bookButton.addEventListener(
     }
 
 
-    bookButton.disabled =
-      true;
-
+    bookButton.disabled = true;
 
     message.className =
       "message";
-
 
     message.textContent =
       "Prenotazione in corso...";
@@ -2185,13 +1274,10 @@ bookButton.addEventListener(
       error
     } =
       await supabaseClient
-        .from(
-          "prenotazioni"
-        )
+        .from("prenotazioni")
         .insert({
 
-          nome:
-            name,
+          nome:name,
 
           persona:
             selectedPerson,
@@ -2207,17 +1293,14 @@ bookButton.addEventListener(
 
     if(error){
 
-      console.error(
-        error
-      );
+      console.error(error);
 
       message.className =
         "message error";
 
 
       if(
-        error.code ===
-        "23505"
+        error.code === "23505"
       ){
 
         message.textContent =
@@ -2231,7 +1314,6 @@ bookButton.addEventListener(
 
       }
 
-
       loadTimes();
 
       return;
@@ -2239,84 +1321,43 @@ bookButton.addEventListener(
     }
 
 
-    /* ==========================
-       PRENOTAZIONE CONFERMATA
-    ========================== */
-
     const formattedDate =
       new Date(
         selectedDate +
         "T00:00:00"
-      )
-      .toLocaleDateString(
+      ).toLocaleDateString(
         "it-IT",
         {
-
-          weekday:
-            "long",
-
-          day:
-            "numeric",
-
-          month:
-            "long",
-
-          year:
-            "numeric"
-
+          weekday:"long",
+          day:"numeric",
+          month:"long",
+          year:"numeric"
         }
       );
 
 
     const whatsappNumber =
-
-      selectedPerson ===
-      "Matteo"
-
-      ?
-
-      "393201519469"
-
-      :
-
-      "393274454796";
+      selectedPerson === "Matteo"
+        ? "393201519469"
+        : "393274454796";
 
 
-    const whatsappMessage =
-
+    const whatsappText =
       `Ciao! Sono ${name}, ` +
-
-      `ho appena prenotato ` +
-
-      `un appuntamento da ` +
-
+      `ho appena prenotato da ` +
       `𝑴𝑬𝑻𝑻&𝑻𝑶𝑴𝑴 𝑩𝑨𝑹𝑩𝑬𝑹.` +
-
       `\n\n` +
-
-      `✂️ Barbiere: ` +
-
-      `${selectedPerson}` +
-
-      `\n` +
-
-      `📅 ${formattedDate}` +
-
-      `\n` +
-
-      `🕐 Ore ${selectedTime}`;
+      `✂️ Barbiere: ${selectedPerson}` +
+      `\n📅 ${formattedDate}` +
+      `\n🕐 Ore ${selectedTime}`;
 
 
     const whatsappLink =
-
       "https://wa.me/" +
-
       whatsappNumber +
-
       "?text=" +
-
       encodeURIComponent(
-        whatsappMessage
+        whatsappText
       );
 
 
@@ -2329,16 +1370,12 @@ bookButton.addEventListener(
       <div class="confirmation">
 
         <div class="confirmation-title">
-
           ✅ PRENOTAZIONE CONFERMATA
-
         </div>
-
 
         <div class="confirmation-details">
 
           ✂️ Barbiere:
-
           <strong>
             ${selectedPerson}
           </strong>
@@ -2346,7 +1383,6 @@ bookButton.addEventListener(
           <br>
 
           📅 Giorno:
-
           <strong>
             ${formattedDate}
           </strong>
@@ -2354,7 +1390,6 @@ bookButton.addEventListener(
           <br>
 
           🕐 Orario:
-
           <strong>
             ${selectedTime}
           </strong>
@@ -2362,23 +1397,19 @@ bookButton.addEventListener(
           <br>
 
           👤 Nome:
-
           <strong>
             ${name}
           </strong>
 
         </div>
 
-
         <a
+          class="whatsapp-button"
           href="${whatsappLink}"
           target="_blank"
-          class="whatsapp-button"
           rel="noopener"
         >
-
           📱 CONFERMA SU WHATSAPP
-
         </a>
 
       </div>
@@ -2386,11 +1417,7 @@ bookButton.addEventListener(
     `;
 
 
-    nameInput.value =
-      "";
-
-    selectedTime =
-      null;
+    nameInput.value = "";
 
     loadTimes();
 
@@ -2398,28 +1425,21 @@ bookButton.addEventListener(
 );
 
 
-/* ==============================
+/* =====================================================
    AVVIO
-============================== */
+===================================================== */
 
 const today =
   new Date();
 
-
 selectedDate =
-  dateString(
-    today
-  );
-
+  dateString(today);
 
 renderDays();
-
 
 loadTimes();
 
 </script>
 
-
 </body>
-
 </html>
